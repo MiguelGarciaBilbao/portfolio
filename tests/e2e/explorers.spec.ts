@@ -14,9 +14,15 @@ test('stack tabs: arrow keys change panel and panel lists tags', async ({ page, 
   await expect(services).toBeFocused();
   await expect(stack.getByRole('tabpanel')).toContainText('.NET / C#');
   await page.keyboard.press('ArrowLeft');
-  await expect(stack.getByRole('tab', { name: 'Interfaz' })).toHaveAttribute('aria-selected', 'true');
+  await expect(stack.getByRole('tab', { name: 'Interfaz' })).toHaveAttribute(
+    'aria-selected',
+    'true',
+  );
   await page.keyboard.press('ArrowLeft'); // wraps to last
-  await expect(stack.getByRole('tab', { name: 'Cloud y entrega' })).toHaveAttribute('aria-selected', 'true');
+  await expect(stack.getByRole('tab', { name: 'Cloud y entrega' })).toHaveAttribute(
+    'aria-selected',
+    'true',
+  );
 });
 
 test('stack tab click works on touch', async ({ page }) => {

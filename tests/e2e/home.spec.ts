@@ -75,5 +75,7 @@ test('copy email shows confirmation', async ({ page, context, browserName }) => 
   await page.goto('/es');
   await page.locator('#contact').getByRole('button', { name: 'Copiar email' }).click();
   await expect(page.locator('#contact').getByText('Email copiado')).toBeVisible();
-  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('miguel99bilbao@gmail.com');
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
+    'miguel99bilbao@gmail.com',
+  );
 });
