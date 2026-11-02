@@ -7,6 +7,9 @@ import { Metrics } from '@/components/sections/Metrics';
 import { Experience } from '@/components/sections/Experience';
 import { Education } from '@/components/sections/Education';
 import { Contact } from '@/components/sections/Contact';
+import { StackSection } from '@/components/sections/StackSection';
+import { RagSection } from '@/components/sections/RagSection';
+import { Projects } from '@/components/sections/Projects';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
@@ -27,7 +30,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
         <div className="hero-grid__stage" aria-hidden="true" />
       </div>
       <Metrics locale={locale} />
-      {/* 04 Stack · 05 RAG · 06 Proyectos (Task 7b) */}
+      <StackSection locale={locale} />
+      <RagSection locale={locale} />
+      <Projects locale={locale} />
       <Experience locale={locale} />
       <Education locale={locale} />
       <Contact locale={locale} />
