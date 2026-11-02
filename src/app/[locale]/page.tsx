@@ -10,6 +10,10 @@ import { Contact } from '@/components/sections/Contact';
 import { StackSection } from '@/components/sections/StackSection';
 import { RagSection } from '@/components/sections/RagSection';
 import { Projects } from '@/components/sections/Projects';
+import { AskCorpus } from '@/components/sections/AskCorpus';
+import { CorpusProvider } from '@/components/corpus/CorpusProvider';
+import { corpusNodes, corpusQA } from '@/content/corpus';
+import { getTranslations } from 'next-intl/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
@@ -19,16 +23,39 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: L
 export default async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations('ask');
+  const qa = corpusQA.map((q) => ({
+    id: q.id,
+    question: q.question[locale],
+    answer: q.answer[locale],
+    sources: q.sources,
+  }));
+  const nodes = Object.fromEntries(
+    corpusNodes.map((n) => [n.id, { id: n.id, category: n.category, title: n.title[locale], href: n.href }]),
+  );
+  const items = qa.map((q) => ({ id: q.id, sources: q.sources, length: q.answer.length }));
+  const askLabels = {
+    title: t('title'),
+    subtitle: t('subtitle'),
+    questions: t('questions'),
+    retrieving: t('retrieving'),
+    sources: t('sources'),
+    idle: t('idle'),
+    disclaimer: t('disclaimer'),
+  };
   return (
     <main id="main" tabIndex={-1}>
       <JsonLd data={personJsonLd(locale)} />
       {/* 01 + 02: columna izquierda (Hero, AskCorpus) y escenario fijo del cerebro (Task 8/9) */}
-      <div className="wrap hero-grid">
-        <div className="hero-grid__content">
-          <Hero locale={locale} />
+      <CorpusProvider items={items}>
+        <div className="wrap hero-grid">
+          <div className="hero-grid__content">
+            <Hero locale={locale} />
+            <AskCorpus qa={qa} nodes={nodes} labels={askLabels} />
+          </div>
+          <div className="hero-grid__stage" aria-hidden="true" />
         </div>
-        <div className="hero-grid__stage" aria-hidden="true" />
-      </div>
+      </CorpusProvider>
       <Metrics locale={locale} />
       <StackSection locale={locale} />
       <RagSection locale={locale} />

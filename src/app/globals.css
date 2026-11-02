@@ -1198,3 +1198,132 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
 .project-card__link:is(:hover, :focus-visible) .oem-top {
   transform: translateY(-42px);
 }
+
+/* ───────────── 02 · Pregúntale a mi corpus ───────────── */
+.ask {
+  padding-block: 24px clamp(80px, 10vw, 128px);
+}
+.ask__title {
+  margin: 0;
+  font-size: var(--step-3);
+  font-weight: 720;
+  font-stretch: 112%;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.ask__subtitle {
+  margin: 12px 0 0;
+}
+.ask__questions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+}
+.ask__q {
+  padding: 9px 14px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-mint) 32%, var(--color-line));
+  background: color-mix(in srgb, var(--color-bg-2) 55%, transparent);
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+}
+.ask__q:hover {
+  border-color: var(--color-mint);
+}
+.ask__q[aria-checked='true'] {
+  background: linear-gradient(90deg, var(--color-mint), var(--color-cyan));
+  border-color: transparent;
+  color: var(--color-on-accent);
+  font-weight: 600;
+}
+.ask__panel {
+  margin-top: 22px;
+  min-height: 228px;
+  padding: 22px 22px 20px;
+  border-radius: 22px;
+  border: 1px solid var(--color-line);
+  background: color-mix(in srgb, var(--color-bg) 70%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.ask__prompt {
+  margin: 0;
+  color: var(--color-muted);
+  overflow-wrap: anywhere;
+}
+.ask__caret {
+  color: var(--color-mint);
+}
+.ask__placeholder {
+  color: var(--color-muted);
+}
+.ask__retrieving {
+  margin: 16px 0 0;
+  color: var(--color-violet);
+  animation: ask-blink 1s steps(2) infinite;
+}
+.ask__answer {
+  margin: 16px 0 0;
+  font-size: 1.06rem;
+  line-height: 1.6;
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+.ask__cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--color-mint);
+  animation: ask-blink 0.8s steps(2) infinite;
+}
+.ask__sources {
+  margin-top: 18px;
+}
+.ask__sources-label {
+  margin: 0 0 8px;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+.ask__source {
+  animation: ask-pop 0.45s var(--ease-out-soft) both;
+}
+.ask__source-link {
+  text-decoration: none;
+  border-color: color-mix(in srgb, var(--node) 45%, transparent);
+}
+.ask__source-link::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--node);
+  box-shadow: 0 0 8px 1px var(--node);
+}
+.ask__source-link:hover {
+  border-color: var(--node);
+}
+.ask__disclaimer {
+  margin: 14px 0 0;
+  color: var(--color-muted);
+  font-size: 0.82rem;
+}
+@keyframes ask-blink {
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes ask-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.96);
+  }
+}
