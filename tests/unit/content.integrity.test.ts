@@ -6,6 +6,7 @@ import * as stackMod from '@/content/stack';
 import * as metricsMod from '@/content/metrics';
 import * as projectsMod from '@/content/projects';
 import * as ragMod from '@/content/rag';
+import * as corpusMod from '@/content/corpus';
 
 const allContent = {
   ...profileMod,
@@ -15,6 +16,7 @@ const allContent = {
   ...metricsMod,
   ...projectsMod,
   ...ragMod,
+  ...corpusMod,
 };
 
 type Problem = string;
@@ -102,5 +104,54 @@ describe('content integrity', () => {
       'llm',
       'reports',
     ]);
+  });
+
+  test('corpus has ~60 nodes with spec distribution', () => {
+    const { corpusNodes } = corpusMod;
+    expect(corpusNodes.length).toBeGreaterThanOrEqual(56);
+    expect(corpusNodes.length).toBeLessThanOrEqual(64);
+    const target = { frontend: 16, backend: 16, ai: 16, product: 12 } as const;
+    for (const [cat, n] of Object.entries(target)) {
+      const count = corpusNodes.filter((c) => c.category === cat).length;
+      expect(Math.abs(count - n), `${cat}: ${count}`).toBeLessThanOrEqual(2);
+    }
+    const ids = corpusNodes.map((c) => c.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    for (const node of corpusNodes) {
+      expect(node.id).toMatch(/^(frontend|backend|ai|product)-[a-z0-9-]+$/);
+      expect(node.id.startsWith(`${node.category}-`)).toBe(true);
+    }
+  });
+
+  test('qa ids are the nine spec questions', () => {
+    expect(corpusMod.corpusQA.map((q) => q.id)).toEqual([
+      'ai-production',
+      'cloud',
+      'leadership',
+      'angular',
+      'legacy',
+      'backend',
+      'clients',
+      'studying',
+      'looking-for',
+    ]);
+  });
+
+  test('every qa source exists and count is 2..5', () => {
+    const ids = new Set(corpusMod.corpusNodes.map((n) => n.id));
+    for (const qa of corpusMod.corpusQA) {
+      expect(qa.sources.length, qa.id).toBeGreaterThanOrEqual(2);
+      expect(qa.sources.length, qa.id).toBeLessThanOrEqual(5);
+      for (const s of qa.sources) expect(ids.has(s), `${qa.id} → ${s}`).toBe(true);
+    }
+  });
+
+  test('every project slug has at least one node', () => {
+    for (const slug of ['rag-esg', 'tfm-hipoglucemia', 'web-components-oem']) {
+      expect(
+        corpusMod.corpusNodes.some((n) => 'project' in n.href && n.href.project === slug),
+        slug,
+      ).toBe(true);
+    }
   });
 });
