@@ -3,15 +3,35 @@ import { isoBox, iso } from '@/lib/iso';
 type Kind = 'rag' | 'timeseries' | 'oem';
 
 function Box({
-  x, y, z, w, d, h, color, className,
+  x,
+  y,
+  z,
+  w,
+  d,
+  h,
+  color,
+  className,
 }: {
-  x: number; y: number; z: number; w: number; d: number; h: number; color: string; className?: string;
+  x: number;
+  y: number;
+  z: number;
+  w: number;
+  d: number;
+  h: number;
+  color: string;
+  className?: string;
 }) {
   const f = isoBox(x, y, z, w, d, h);
   return (
     <g className={className}>
       <polygon points={f.left} fill={color} fillOpacity={0.18} stroke={color} strokeOpacity={0.7} />
-      <polygon points={f.right} fill={color} fillOpacity={0.32} stroke={color} strokeOpacity={0.7} />
+      <polygon
+        points={f.right}
+        fill={color}
+        fillOpacity={0.32}
+        stroke={color}
+        strokeOpacity={0.7}
+      />
       <polygon points={f.top} fill={color} fillOpacity={0.55} stroke={color} />
     </g>
   );
@@ -32,7 +52,13 @@ function RagArt() {
     .join(' ');
   return (
     <g transform="translate(160 118)">
-      <path d={`${path} Z`} fill="none" stroke="#8B5CF6" strokeDasharray="4 5" strokeOpacity={0.8} />
+      <path
+        d={`${path} Z`}
+        fill="none"
+        stroke="#8B5CF6"
+        strokeDasharray="4 5"
+        strokeOpacity={0.8}
+      />
       {ring.map((p, i) => (
         <Box key={i} x={p.x} y={p.y} z={0} w={24} d={24} h={14 + (i % 3) * 6} color={colors[i]} />
       ))}

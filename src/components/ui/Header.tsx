@@ -13,10 +13,12 @@ export async function Header({ locale }: { locale: Locale }) {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <a href={`/${locale}`} className="site-header__mark" aria-label={profile.name}>
+        {/* nombre accesible = texto visible + nombre completo (WCAG 2.5.3, label in name) */}
+        <a href={`/${locale}`} className="site-header__mark">
           {profile.initials}
+          <span className="sr-only"> · {profile.name}</span>
         </a>
-        <nav aria-label="Principal" className="site-header__nav">
+        <nav aria-label={tc('mainNav')} className="site-header__nav">
           {links.map((l) => (
             <a key={l.id} href={l.href}>
               {l.label}

@@ -65,8 +65,18 @@ describe('json-ld', () => {
 
 describe('metadata', () => {
   test('openGraph locale and canonical', () => {
-    const es = buildMetadata({ locale: 'es', href: { pathname: '/' }, title: 't', description: 'd' });
-    const en = buildMetadata({ locale: 'en', href: { pathname: '/' }, title: 't', description: 'd' });
+    const es = buildMetadata({
+      locale: 'es',
+      href: { pathname: '/' },
+      title: 't',
+      description: 'd',
+    });
+    const en = buildMetadata({
+      locale: 'en',
+      href: { pathname: '/' },
+      title: 't',
+      description: 'd',
+    });
     expect((es.openGraph as { locale: string }).locale).toBe('es_ES');
     expect((en.openGraph as { locale: string }).locale).toBe('en_GB');
     expect(es.alternates?.canonical).toBe('https://example.dev/es');
@@ -82,7 +92,9 @@ describe('sitemap & robots', () => {
       expect(e.alternates?.languages).toHaveProperty('es');
       expect(e.alternates?.languages).toHaveProperty('en');
     }
-    expect(entries.map((e) => e.url)).toContain('https://example.dev/en/projects/web-components-oem');
+    expect(entries.map((e) => e.url)).toContain(
+      'https://example.dev/en/projects/web-components-oem',
+    );
   });
   test('robots allows all and links sitemap', () => {
     expect(robots()).toEqual({

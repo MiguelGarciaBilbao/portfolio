@@ -58,7 +58,8 @@ export function SceneCanvas({
         const isVisible = entries.some((e) => e.isIntersecting);
         setVisible(isVisible);
         if (isVisible && !idle) {
-          const ric = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 200));
+          const ric =
+            window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 200));
           idle = ric(() => setMount(true)) as number;
         }
       },
@@ -78,7 +79,11 @@ export function SceneCanvas({
 
   return (
     <div ref={ref} className={['scene', className].filter(Boolean).join(' ')}>
-      <div className="scene__fallback" data-testid={`${testId}-fallback`} data-hidden={ready ? 'true' : 'false'}>
+      <div
+        className="scene__fallback"
+        data-testid={`${testId}-fallback`}
+        data-hidden={ready ? 'true' : 'false'}
+      >
         {fallback}
       </div>
       {active && (

@@ -143,7 +143,9 @@ export default function BrainCorpus({
     () => ({
       uTime: { value: 0 },
       uSize: { value: 5.4 },
-      uPixelRatio: { value: Math.min(typeof window === 'undefined' ? 1 : window.devicePixelRatio, 2) },
+      uPixelRatio: {
+        value: Math.min(typeof window === 'undefined' ? 1 : window.devicePixelRatio, 2),
+      },
     }),
     [],
   );
@@ -181,12 +183,20 @@ export default function BrainCorpus({
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
     g.setAttribute('aColor', new THREE.BufferAttribute(col, 3));
-    g.setAttribute('aScale', new THREE.BufferAttribute(new Float32Array(geometry.nodes.length).fill(1), 1));
+    g.setAttribute(
+      'aScale',
+      new THREE.BufferAttribute(new Float32Array(geometry.nodes.length).fill(1), 1),
+    );
     return g;
   }, [geometry]);
 
   const haloUniforms = useMemo(
-    () => ({ uSize: { value: 46 }, uPixelRatio: { value: Math.min(typeof window === 'undefined' ? 1 : window.devicePixelRatio, 2) } }),
+    () => ({
+      uSize: { value: 46 },
+      uPixelRatio: {
+        value: Math.min(typeof window === 'undefined' ? 1 : window.devicePixelRatio, 2),
+      },
+    }),
     [],
   );
 
@@ -221,7 +231,8 @@ export default function BrainCorpus({
     if (outer.current) outer.current.rotation.y += 0.09 * dt * (activeSet.size ? 0.35 : 1);
     if (inner.current) {
       inner.current.rotation.x += (pointer.current.y * MAX_TILT - inner.current.rotation.x) * 0.05;
-      inner.current.rotation.z += (-pointer.current.x * MAX_TILT * 0.6 - inner.current.rotation.z) * 0.05;
+      inner.current.rotation.z +=
+        (-pointer.current.x * MAX_TILT * 0.6 - inner.current.rotation.z) * 0.05;
     }
 
     const mesh = nodesRef.current;

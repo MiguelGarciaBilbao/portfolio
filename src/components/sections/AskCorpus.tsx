@@ -50,7 +50,8 @@ export function AskCorpus({
     select(qa[next].id);
   };
 
-  const showSources = state.status === 'retrieving' || state.status === 'answering' || state.status === 'done';
+  const showSources =
+    state.status === 'retrieving' || state.status === 'answering' || state.status === 'done';
 
   return (
     <section id="ask" aria-labelledby="ask-title" className="ask">
@@ -85,7 +86,11 @@ export function AskCorpus({
       <div className="ask__panel" data-status={state.status}>
         <p className="ask__prompt mono" aria-hidden="true">
           <span className="ask__caret">&gt;</span> query:{' '}
-          {current ? `"${current.question}"` : <span className="ask__placeholder">{labels.idle}</span>}
+          {current ? (
+            `"${current.question}"`
+          ) : (
+            <span className="ask__placeholder">{labels.idle}</span>
+          )}
         </p>
 
         {state.status === 'retrieving' && (
@@ -115,7 +120,10 @@ export function AskCorpus({
                 if (!node) return null;
                 const href =
                   'project' in node.href
-                    ? { pathname: '/proyectos/[slug]' as const, params: { slug: node.href.project } }
+                    ? {
+                        pathname: '/proyectos/[slug]' as const,
+                        params: { slug: node.href.project },
+                      }
                     : { pathname: '/' as const, hash: node.href.section };
                 return (
                   <li key={id} style={{ animationDelay: `${i * 90}ms` }} className="ask__source">

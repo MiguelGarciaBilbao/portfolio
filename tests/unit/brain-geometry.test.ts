@@ -4,7 +4,8 @@ import { corpusNodes } from '@/content/corpus';
 import type { Category } from '@/content/types';
 
 const nodes = corpusNodes.map(({ id, category }) => ({ id, category }));
-const make = (seed = BRAIN_SEED, particleCount = 3000) => generateBrain({ seed, particleCount, nodes });
+const make = (seed = BRAIN_SEED, particleCount = 3000) =>
+  generateBrain({ seed, particleCount, nodes });
 
 describe('mulberry32', () => {
   test('deterministic in [0,1)', () => {
@@ -48,7 +49,11 @@ describe('generateBrain', () => {
     ) as Record<Category, number[]>;
     const dist = (a: number[], b: number[]) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
     const ok = g.nodes.filter((n) =>
-      cats.every((c) => c === n.category || dist(n.position, centroid[n.category]) < dist(n.position, centroid[c])),
+      cats.every(
+        (c) =>
+          c === n.category ||
+          dist(n.position, centroid[n.category]) < dist(n.position, centroid[c]),
+      ),
     ).length;
     expect(ok / g.nodes.length).toBeGreaterThanOrEqual(0.85);
   });

@@ -33,7 +33,10 @@ export const ragSteps: RagStep[] = [
       es: 'El modelo de datos ESG se convierte en embeddings para poder buscar por significado y no solo por palabras.',
       en: 'The ESG data model is turned into embeddings so it can be searched by meaning, not just keywords.',
     },
-    tech: { es: 'Amazon Bedrock, modelos de Hugging Face', en: 'Amazon Bedrock, Hugging Face models' },
+    tech: {
+      es: 'Amazon Bedrock, modelos de Hugging Face',
+      en: 'Amazon Bedrock, Hugging Face models',
+    },
   },
   {
     id: 'vector',

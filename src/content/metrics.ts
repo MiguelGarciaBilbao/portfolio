@@ -27,7 +27,10 @@ export const metrics: Metric[] = [
     value: 30,
     prefix: '−',
     suffix: { es: '%', en: '%' },
-    label: { es: 'incidencias y tiempos tras la migración', en: 'incidents and turnaround after the migration' },
+    label: {
+      es: 'incidencias y tiempos tras la migración',
+      en: 'incidents and turnaround after the migration',
+    },
   },
   {
     id: 'legacyModules',

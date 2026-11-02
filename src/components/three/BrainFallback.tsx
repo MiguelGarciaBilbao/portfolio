@@ -20,7 +20,13 @@ function geometryFor(nodes: BrainInputNode[]) {
   return g;
 }
 
-export function BrainFallback({ nodes, activeIds = [] }: { nodes: BrainInputNode[]; activeIds?: string[] }) {
+export function BrainFallback({
+  nodes,
+  activeIds = [],
+}: {
+  nodes: BrainInputNode[];
+  activeIds?: string[];
+}) {
   const g = geometryFor(nodes);
   const active = new Set(activeIds);
   const dots: React.ReactElement[] = [];
@@ -40,7 +46,12 @@ export function BrainFallback({ nodes, activeIds = [] }: { nodes: BrainInputNode
     );
   }
   return (
-    <svg viewBox="-1.65 -0.95 3.3 2.4" className="brain-fallback" aria-hidden="true" focusable="false">
+    <svg
+      viewBox="-1.65 -0.95 3.3 2.4"
+      className="brain-fallback"
+      aria-hidden="true"
+      focusable="false"
+    >
       <defs>
         <filter id="brain-glow" x="-50%" y="-50%" width="200%" height="200%">
           <feGaussianBlur stdDeviation="0.025" />

@@ -6,7 +6,8 @@
     "menu": "Menu",
     "language": "Language",
     "home": "Home",
-    "copyright": "© 2026 Miguel Alejandro García Bilbao"
+    "copyright": "© 2026 Miguel Alejandro García Bilbao",
+    "mainNav": "Main"
   },
   "nav": {
     "stack": "Stack",

@@ -23,6 +23,21 @@ async function disableWebGL(page: Page) {
   });
 }
 
+/** Headless Chromium rasteriza WebGL por software (SwiftShader), y en ese caso las escenas
+ * no se montan. Para probar el montaje se anuncia una GPU real en WEBGL_debug_renderer_info. */
+async function spoofHardwareGpu(page: Page) {
+  await page.addInitScript(() => {
+    const UNMASKED_RENDERER = 0x9246;
+    for (const Ctx of [WebGLRenderingContext, WebGL2RenderingContext]) {
+      const original = Ctx.prototype.getParameter;
+      Ctx.prototype.getParameter = function (this: WebGLRenderingContext, p: number) {
+        if (p === UNMASKED_RENDERER) return 'ANGLE (Apple, ANGLE Metal Renderer: Apple M1 Pro)';
+        return original.call(this, p);
+      } as typeof original;
+    }
+  });
+}
+
 async function scrollThrough(page: Page) {
   await page.evaluate(async () => {
     for (let y = 0; y < document.body.scrollHeight; y += 600) {
@@ -35,6 +50,7 @@ async function scrollThrough(page: Page) {
 test('brain canvas mounts on desktop', async ({ page, isMobile }) => {
   test.skip(isMobile, 'desktop');
   const errors = trackConsoleErrors(page);
+  await spoofHardwareGpu(page);
   await page.goto('/es');
   await expect(page.getByTestId('brain-canvas')).toBeVisible({ timeout: 15_000 });
   await expect(page.getByTestId('brain-canvas').locator('canvas')).toHaveCount(1);
@@ -76,6 +92,7 @@ test('answering a question highlights nodes in fallback', async ({ page }) => {
 
 test('canvas is aria-hidden', async ({ page, isMobile }) => {
   test.skip(isMobile, 'desktop');
+  await spoofHardwareGpu(page);
   await page.goto('/es');
   await expect(page.getByTestId('brain-canvas')).toBeVisible({ timeout: 15_000 });
   await expect(page.getByTestId('brain-canvas')).toHaveAttribute('aria-hidden', 'true');
@@ -84,6 +101,7 @@ test('canvas is aria-hidden', async ({ page, isMobile }) => {
 test('stack and rag canvases mount when scrolled into view', async ({ page, isMobile }) => {
   test.skip(isMobile, 'desktop');
   const errors = trackConsoleErrors(page);
+  await spoofHardwareGpu(page);
   await page.goto('/es');
   for (const id of ['stack', 'rag']) {
     await page.getByTestId(`${id}-fallback`).scrollIntoViewIfNeeded();
@@ -108,7 +126,10 @@ test('selecting a rag step updates the active block in the fallback', async ({ p
   await page.goto('/es');
   const fallback = page.getByTestId('rag-fallback');
   await expect(fallback.locator('[data-active="true"]')).toHaveAttribute('data-step', 'corpus');
-  await page.locator('#ai').getByRole('tab', { name: /Capa vectorial/ }).click();
+  await page
+    .locator('#ai')
+    .getByRole('tab', { name: /Capa vectorial/ })
+    .click();
   await expect(fallback.locator('[data-active="true"]')).toHaveAttribute('data-step', 'vector');
 });
 
@@ -121,4 +142,14 @@ test('scene fallbacks fill their stage (no collapsed boxes)', async ({ page }) =
     expect(box!.height, `${id} height`).toBeGreaterThan(300);
     expect(box!.width, `${id} width`).toBeGreaterThan(300);
   }
+});
+
+test('software WebGL renderer → static fallback only', async ({ page }) => {
+  // sin spoof: el Chromium headless usa SwiftShader
+  const errors = trackConsoleErrors(page);
+  await page.goto('/es');
+  await page.waitForTimeout(2500);
+  await expect(page.getByTestId('brain-fallback')).toBeVisible();
+  await expect(page.getByTestId('brain-canvas')).toHaveCount(0);
+  expect(errors).toEqual([]);
 });

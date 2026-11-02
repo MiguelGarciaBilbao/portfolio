@@ -32,7 +32,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
     sources: q.sources,
   }));
   const nodes = Object.fromEntries(
-    corpusNodes.map((n) => [n.id, { id: n.id, category: n.category, title: n.title[locale], href: n.href }]),
+    corpusNodes.map((n) => [
+      n.id,
+      { id: n.id, category: n.category, title: n.title[locale], href: n.href },
+    ]),
   );
   const brainNodes = corpusNodes.map((n) => ({ id: n.id, category: n.category }));
   const brainTitles = Object.fromEntries(corpusNodes.map((n) => [n.id, n.title[locale]]));

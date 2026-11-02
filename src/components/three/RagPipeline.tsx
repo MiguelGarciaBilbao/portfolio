@@ -31,7 +31,8 @@ function Block({
   useFrame((_, delta) => {
     const k = 1 - Math.pow(0.001, Math.min(delta, 0.05) / 0.35);
     if (ref.current) ref.current.position.y += ((active ? 0.22 : 0) - ref.current.position.y) * k;
-    if (mat.current) mat.current.emissiveIntensity += ((active ? 1 : 0.3) - mat.current.emissiveIntensity) * k;
+    if (mat.current)
+      mat.current.emissiveIntensity += ((active ? 1 : 0.3) - mat.current.emissiveIntensity) * k;
   });
   return (
     <group position={position}>
@@ -88,10 +89,17 @@ export default function RagPipeline({
     [steps],
   );
   const curve = useMemo(
-    () => new THREE.CatmullRomCurve3(positions.map((p) => new THREE.Vector3(p[0], 0.05, p[2])), true),
+    () =>
+      new THREE.CatmullRomCurve3(
+        positions.map((p) => new THREE.Vector3(p[0], 0.05, p[2])),
+        true,
+      ),
     [positions],
   );
-  const curveGeo = useMemo(() => new THREE.BufferGeometry().setFromPoints(curve.getPoints(200)), [curve]);
+  const curveGeo = useMemo(
+    () => new THREE.BufferGeometry().setFromPoints(curve.getPoints(200)),
+    [curve],
+  );
 
   const particles = useRef<THREE.InstancedMesh>(null);
   const dummy = useMemo(() => new THREE.Object3D(), []);

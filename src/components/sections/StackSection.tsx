@@ -17,7 +17,13 @@ export async function StackSection({ locale }: { locale: Locale }) {
   return (
     <section id="stack" aria-labelledby="stack-title" className="section">
       <div className="wrap">
-        <SectionHeader id="stack" cat="frontend" eyebrow={t('eyebrow')} title={t('title')} intro={t('intro')} />
+        <SectionHeader
+          id="stack"
+          cat="frontend"
+          eyebrow={t('eyebrow')}
+          title={t('title')}
+          intro={t('intro')}
+        />
         <StackExplorer layers={layers} labels={{ layers: t('layers'), used: t('used') }} />
       </div>
     </section>

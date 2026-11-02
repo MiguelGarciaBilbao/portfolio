@@ -15,7 +15,13 @@ export async function RagSection({ locale }: { locale: Locale }) {
   return (
     <section id="ai" aria-labelledby="ai-title" className="section">
       <div className="wrap">
-        <SectionHeader id="ai" cat="ai" eyebrow={t('eyebrow')} title={t('title')} intro={t('intro')} />
+        <SectionHeader
+          id="ai"
+          cat="ai"
+          eyebrow={t('eyebrow')}
+          title={t('title')}
+          intro={t('intro')}
+        />
         <RagExplorer steps={steps} labels={{ steps: t('steps'), loop: t('loop') }} />
         <p className="rag-note">{t('note')}</p>
       </div>

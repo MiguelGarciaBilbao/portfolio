@@ -15,7 +15,13 @@ export function ringPositions(n: number, rx: number, ry: number) {
 }
 
 /** Circuito RAG isométrico estático: seis bloques y el bucle informes → corpus. */
-export function RagPipelineFallback({ steps, activeId }: { steps: RagStepNode[]; activeId: string }) {
+export function RagPipelineFallback({
+  steps,
+  activeId,
+}: {
+  steps: RagStepNode[];
+  activeId: string;
+}) {
   const ring = ringPositions(steps.length, 120, 120);
   const S = 34;
   const path = ring
@@ -26,7 +32,13 @@ export function RagPipelineFallback({ steps, activeId }: { steps: RagStepNode[];
     .join(' ');
   return (
     <svg viewBox="-220 -160 440 320" className="iso-fallback" aria-hidden="true" focusable="false">
-      <path d={`${path} Z`} fill="none" stroke="#26C6FF" strokeOpacity={0.4} strokeDasharray="5 6" />
+      <path
+        d={`${path} Z`}
+        fill="none"
+        stroke="#26C6FF"
+        strokeOpacity={0.4}
+        strokeDasharray="5 6"
+      />
       {steps.map((s, i) => {
         const p = ring[i];
         const on = s.id === activeId;
@@ -38,7 +50,14 @@ export function RagPipelineFallback({ steps, activeId }: { steps: RagStepNode[];
             <polygon points={f.left} fill={c} fillOpacity={0.15} stroke={c} strokeOpacity={0.6} />
             <polygon points={f.right} fill={c} fillOpacity={0.28} stroke={c} strokeOpacity={0.6} />
             <polygon points={f.top} fill={c} fillOpacity={on ? 0.6 : 0.3} stroke={c} />
-            <text x={lx} y={ly} textAnchor="middle" fill="#E8F1FF" fontSize={11} fontFamily="var(--font-mono)">
+            <text
+              x={lx}
+              y={ly}
+              textAnchor="middle"
+              fill="#E8F1FF"
+              fontSize={11}
+              fontFamily="var(--font-mono)"
+            >
               {s.label}
             </text>
           </g>

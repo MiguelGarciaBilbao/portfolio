@@ -4,7 +4,15 @@ import { useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from '@/lib/motion';
 
 /** Renderiza el valor final en SSR y sin JS; anima 0 → value al entrar en pantalla. */
-export function CountUp({ value, prefix = '', suffix = '' }: { value: number; prefix?: string; suffix?: string }) {
+export function CountUp({
+  value,
+  prefix = '',
+  suffix = '',
+}: {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
   const reduced = useReducedMotion();
   const [shown, setShown] = useState(value);

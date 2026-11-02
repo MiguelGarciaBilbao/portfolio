@@ -56,7 +56,15 @@ function StarCursorCanvas() {
     document.documentElement.classList.add('has-star-cursor');
 
     const stars: Star[] = Array.from({ length: POOL }, () => ({
-      alive: false, x: 0, y: 0, vx: 0, vy: 0, size: 0, born: 0, color: COLORS[0], rot: 0,
+      alive: false,
+      x: 0,
+      y: 0,
+      vx: 0,
+      vy: 0,
+      size: 0,
+      born: 0,
+      color: COLORS[0],
+      rot: 0,
     }));
     let next = 0;
     let raf = 0;
@@ -172,7 +180,12 @@ function StarCursorCanvas() {
 
   return (
     <>
-      <canvas ref={canvasRef} className="star-cursor__canvas" aria-hidden="true" data-testid="star-cursor" />
+      <canvas
+        ref={canvasRef}
+        className="star-cursor__canvas"
+        aria-hidden="true"
+        data-testid="star-cursor"
+      />
       <div ref={dotRef} className="star-cursor__dot" aria-hidden="true" />
       <div ref={ringRef} className="star-cursor__ring" aria-hidden="true" />
     </>

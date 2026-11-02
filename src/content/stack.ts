@@ -57,8 +57,14 @@ export const stackLayers: StackLayer[] = [
     },
     tags: same(['.NET / C#', 'Java (Spring)', 'Node.js', 'REST APIs', 'Entity Framework Core']),
     used: {
-      es: ['Backends .NET y Java para las SPAs de Softeca', 'Funcionalidades end-to-end con Node.js en nettrim'],
-      en: [".NET and Java backends for Softeca's SPAs", 'End-to-end features with Node.js at nettrim'],
+      es: [
+        'Backends .NET y Java para las SPAs de Softeca',
+        'Funcionalidades end-to-end con Node.js en nettrim',
+      ],
+      en: [
+        ".NET and Java backends for Softeca's SPAs",
+        'End-to-end features with Node.js at nettrim',
+      ],
     },
   },
   {
@@ -70,12 +76,38 @@ export const stackLayers: StackLayer[] = [
       en: 'Systems that retrieve context and generate useful answers over real data.',
     },
     tags: {
-      es: ['Python', 'RAG', 'Embeddings', 'Amazon Bedrock', 'Hugging Face', 'Transformers', 'OSINT', 'Datos sintéticos', 'Series temporales'],
-      en: ['Python', 'RAG', 'Embeddings', 'Amazon Bedrock', 'Hugging Face', 'Transformers', 'OSINT', 'Synthetic data', 'Time series'],
+      es: [
+        'Python',
+        'RAG',
+        'Embeddings',
+        'Amazon Bedrock',
+        'Hugging Face',
+        'Transformers',
+        'OSINT',
+        'Datos sintéticos',
+        'Series temporales',
+      ],
+      en: [
+        'Python',
+        'RAG',
+        'Embeddings',
+        'Amazon Bedrock',
+        'Hugging Face',
+        'Transformers',
+        'OSINT',
+        'Synthetic data',
+        'Time series',
+      ],
     },
     used: {
-      es: ['Pipeline RAG del Data Intelligence Hub (ESG)', 'TFM: predicción de hipoglucemias con series temporales'],
-      en: ['Data Intelligence Hub RAG pipeline (ESG)', 'Thesis: hypoglycaemia prediction with time series'],
+      es: [
+        'Pipeline RAG del Data Intelligence Hub (ESG)',
+        'TFM: predicción de hipoglucemias con series temporales',
+      ],
+      en: [
+        'Data Intelligence Hub RAG pipeline (ESG)',
+        'Thesis: hypoglycaemia prediction with time series',
+      ],
     },
   },
   {
@@ -91,7 +123,10 @@ export const stackLayers: StackLayer[] = [
       en: ['PostgreSQL', 'SQL Server', 'MySQL', 'MongoDB', 'Vector layer'],
     },
     used: {
-      es: ['Modelo de datos ESG con embeddings en nettrim', 'PostgreSQL en funcionalidades end-to-end'],
+      es: [
+        'Modelo de datos ESG con embeddings en nettrim',
+        'PostgreSQL en funcionalidades end-to-end',
+      ],
       en: ['ESG data model with embeddings at nettrim', 'PostgreSQL in end-to-end features'],
     },
   },

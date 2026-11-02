@@ -836,8 +836,16 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
   height: 70%;
   z-index: -1;
   background:
-    radial-gradient(40% 50% at 30% 50%, color-mix(in srgb, var(--color-mint) 22%, transparent), transparent 70%),
-    radial-gradient(40% 50% at 70% 40%, color-mix(in srgb, var(--color-violet) 26%, transparent), transparent 70%);
+    radial-gradient(
+      40% 50% at 30% 50%,
+      color-mix(in srgb, var(--color-mint) 22%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      40% 50% at 70% 40%,
+      color-mix(in srgb, var(--color-violet) 26%, transparent),
+      transparent 70%
+    );
   filter: blur(40px);
 }
 .contact__title {
@@ -965,7 +973,11 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
   border-radius: 28px;
   border: 1px solid var(--color-line);
   background:
-    radial-gradient(60% 60% at 50% 40%, color-mix(in srgb, var(--color-cyan) 10%, transparent), transparent 70%),
+    radial-gradient(
+      60% 60% at 50% 40%,
+      color-mix(in srgb, var(--color-cyan) 10%, transparent),
+      transparent 70%
+    ),
     color-mix(in srgb, var(--color-bg-2) 45%, transparent);
   overflow: hidden;
 }
@@ -1132,7 +1144,11 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
   border-radius: 24px;
   border: 1px solid var(--color-line);
   background:
-    radial-gradient(70% 50% at var(--mx) var(--my), color-mix(in srgb, var(--color-cyan) 12%, transparent), transparent 70%),
+    radial-gradient(
+      70% 50% at var(--mx) var(--my),
+      color-mix(in srgb, var(--color-cyan) 12%, transparent),
+      transparent 70%
+    ),
     color-mix(in srgb, var(--color-bg-2) 70%, transparent);
   text-decoration: none;
   transform: rotateX(var(--rx)) rotateY(var(--ry));
@@ -1506,7 +1522,11 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
   border-radius: 28px;
   border: 1px solid var(--color-line);
   background:
-    radial-gradient(60% 60% at 50% 40%, color-mix(in srgb, var(--color-cyan) 10%, transparent), transparent 70%),
+    radial-gradient(
+      60% 60% at 50% 40%,
+      color-mix(in srgb, var(--color-cyan) 10%, transparent),
+      transparent 70%
+    ),
     color-mix(in srgb, var(--color-bg-2) 45%, transparent);
 }
 .project-hero__art svg {

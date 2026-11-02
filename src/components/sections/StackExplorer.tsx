@@ -7,7 +7,10 @@ import { useRovingTabs } from '@/components/ui/useRovingTabs';
 import { SceneCanvas } from '@/components/three/SceneCanvas';
 import { IsoStackFallback } from '@/components/three/IsoStackFallback';
 
-const IsoStack = dynamic(() => import('@/components/three/IsoStack'), { ssr: false, loading: () => null });
+const IsoStack = dynamic(() => import('@/components/three/IsoStack'), {
+  ssr: false,
+  loading: () => null,
+});
 
 /** Progreso 0→1 de la sección en pantalla, leído por la escena en cada frame (sin re-render). */
 function useExplodeProgress(ref: React.RefObject<HTMLDivElement | null>) {
@@ -73,9 +76,19 @@ export function StackExplorer({
         </SceneCanvas>
       </div>
       <div className="explorer__ui">
-        <div role="tablist" aria-label={labels.layers} aria-orientation="vertical" className="layer-list">
+        <div
+          role="tablist"
+          aria-label={labels.layers}
+          aria-orientation="vertical"
+          className="layer-list"
+        >
           {layers.map((l, i) => (
-            <button key={l.id} {...tabProps(l.id, i)} className="layer-list__tab" data-cat={l.category}>
+            <button
+              key={l.id}
+              {...tabProps(l.id, i)}
+              className="layer-list__tab"
+              data-cat={l.category}
+            >
               <span className="layer-list__index" aria-hidden="true">
                 {i + 1}
               </span>

@@ -7,8 +7,7 @@ import type { Locale, ProjectSlug } from '@/content/types';
 import { siteUrl } from './site';
 
 export type AppHref =
-  | { pathname: '/' }
-  | { pathname: '/proyectos/[slug]'; params: { slug: ProjectSlug } };
+  { pathname: '/' } | { pathname: '/proyectos/[slug]'; params: { slug: ProjectSlug } };
 
 /** Ruta pública localizada a partir de routing.pathnames (fuente única). */
 export function localizedPath(href: AppHref, locale: Locale): string {
