@@ -39,7 +39,7 @@ export function CountUp({ value, prefix = '', suffix = '' }: { value: number; pr
       <span aria-hidden="true">
         {prefix}
         {shown}
-        {suffix}
+        {suffix && <span className="count-suffix">{suffix}</span>}
       </span>
     </span>
   );
