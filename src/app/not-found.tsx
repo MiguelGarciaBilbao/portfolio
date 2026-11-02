@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 // 404 para rutas fuera de cualquier locale (el proxy prefija casi todo).
 export default function GlobalNotFound() {
   return (
@@ -6,7 +8,7 @@ export default function GlobalNotFound() {
         <main style={{ padding: '4rem 1.5rem' }}>
           <h1>404</h1>
           <p>
-            <a href="/es">Volver al inicio</a> · <a href="/en">Back to home</a>
+            <Link href="/es">Volver al inicio</Link> · <Link href="/en">Back to home</Link>
           </p>
         </main>
       </body>
