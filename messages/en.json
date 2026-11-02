@@ -29,7 +29,9 @@
     "idle": "Pick a question to start.",
     "disclaimer": "Answers written by me from my CV; the retrieval is a visualisation."
   },
-  "metrics": { "title": "In numbers" },
+  "metrics": {
+    "title": "In numbers"
+  },
   "stack": {
     "eyebrow": "Stack breakdown",
     "title": "My stack, exploded",
@@ -55,7 +57,12 @@
     "period": "Period",
     "org": "Organisation",
     "back": "Back to home",
-    "talk": "Sounds like a fit? Let's talk."
+    "talk": "Sounds like a fit? Let's talk.",
+    "breadcrumb": "Breadcrumb",
+    "diagram": "Architecture diagram",
+    "contact": "Get in touch",
+    "details": "Project details",
+    "threshold": "hypoglycaemia threshold"
   },
   "experience": {
     "eyebrow": "Experience",
@@ -63,7 +70,11 @@
     "intro": "Five years, two companies, and a move from frontend to full product work and AI.",
     "details": "What I did"
   },
-  "education": { "eyebrow": "Education", "title": "Education", "languages": "Languages" },
+  "education": {
+    "eyebrow": "Education",
+    "title": "Education",
+    "languages": "Languages"
+  },
   "contact": {
     "title": "Let's talk",
     "copy": "Copy email",

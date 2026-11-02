@@ -1,6 +1,8 @@
 import type { Localized, ProjectSlug } from './types';
+import { ragSteps } from './rag';
 
 export interface ProjectSection {
+  id: 'context' | 'did' | 'architecture' | 'outcome';
   heading: string;
   body: string[];
 }
@@ -16,6 +18,8 @@ export interface Project {
   stack: string[];
   sections: Localized<ProjectSection[]>;
   diagram: 'rag' | 'timeseries' | 'oem';
+  /** Etiquetas de los bloques del diagrama de arquitectura, en orden de flujo. */
+  diagramLabels: Localized<string[]>;
 }
 
 /**
@@ -35,20 +39,29 @@ export const projects: Project[] = [
       es: 'Corpus, embeddings, capa vectorial y LLM sobre datos ESG reales.',
       en: 'Corpus, embeddings, vector layer and an LLM over real ESG data.',
     },
-    role: { es: 'Senior Frontend Engineer · Data Intelligence Hub', en: 'Senior Frontend Engineer · Data Intelligence Hub' },
+    role: {
+      es: 'Senior Frontend Engineer · Data Intelligence Hub',
+      en: 'Senior Frontend Engineer · Data Intelligence Hub',
+    },
     period: { es: 'Feb 2026 – hoy', en: 'Feb 2026 – now' },
     org: 'nettrim technology',
     stack: ['Python', 'RAG', 'Embeddings', 'Amazon Bedrock', 'Hugging Face', 'OSINT'],
     diagram: 'rag',
+    diagramLabels: {
+      es: ragSteps.map((r) => r.label.es),
+      en: ragSteps.map((r) => r.label.en),
+    },
     sections: {
       es: [
         {
+          id: 'context',
           heading: 'Contexto',
           body: [
             'nettrim ofrece consultoría de datos ESG. En el Data Intelligence Hub trabajamos en una plataforma que analiza los datos de cada empresa y genera sus informes de sostenibilidad.',
           ],
         },
         {
+          id: 'did',
           heading: 'Qué hice',
           body: [
             'Construí en Python el pipeline RAG de la plataforma: construcción del corpus documental, generación de embeddings, capa vectorial y capa de respuesta con LLM (Amazon Bedrock).',
@@ -56,6 +69,7 @@ export const projects: Project[] = [
           ],
         },
         {
+          id: 'architecture',
           heading: 'Arquitectura',
           body: [
             'Fuentes y OSINT alimentan el corpus; el corpus se convierte en embeddings; la capa vectorial recupera los fragmentos más relevantes para cada consulta y el LLM redacta la respuesta apoyándose en ellos.',
@@ -64,6 +78,7 @@ export const projects: Project[] = [
           ],
         },
         {
+          id: 'outcome',
           heading: 'Resultados',
           body: [
             'Una consultoría de datos ESG en la que los informes se retroalimentan entre sí en lugar de empezar de cero cada vez.',
@@ -72,12 +87,14 @@ export const projects: Project[] = [
       ],
       en: [
         {
+          id: 'context',
           heading: 'Context',
           body: [
             "nettrim provides ESG data consulting. On the Data Intelligence Hub we work on a platform that analyses each company's data and produces its sustainability reports.",
           ],
         },
         {
+          id: 'did',
           heading: 'What I did',
           body: [
             "Built the platform's RAG pipeline in Python: document corpus construction, embedding generation, vector layer and an LLM response layer (Amazon Bedrock).",
@@ -85,6 +102,7 @@ export const projects: Project[] = [
           ],
         },
         {
+          id: 'architecture',
           heading: 'Architecture',
           body: [
             'Sources and OSINT feed the corpus; the corpus is turned into embeddings; the vector layer retrieves the most relevant chunks for each query and the LLM writes the answer grounded in them.',
@@ -93,6 +111,7 @@ export const projects: Project[] = [
           ],
         },
         {
+          id: 'outcome',
           heading: 'Outcome',
           body: [
             'An ESG data consulting workflow where reports feed back into one another instead of starting from scratch every time.',
@@ -120,21 +139,36 @@ export const projects: Project[] = [
     org: 'Universidad Alfonso X el Sabio (UAX)',
     stack: ['Python', 'Series temporales', 'CGM'],
     diagram: 'timeseries',
+    diagramLabels: {
+      es: [
+        'Lecturas de glucosa (CGM)',
+        'Modelo de series temporales personalizado',
+        'Aviso de posible hipoglucemia',
+      ],
+      en: [
+        'Glucose readings (CGM)',
+        'Personalised time-series model',
+        'Warning of a possible hypoglycaemia',
+      ],
+    },
     sections: {
       es: [
         {
+          id: 'context',
           heading: 'Contexto',
           body: [
             'TFM del Máster en Inteligencia Artificial de la Universidad Alfonso X el Sabio (marzo – noviembre de 2026).',
           ],
         },
         {
+          id: 'did',
           heading: 'Qué hice',
           body: [
             'Predicción personalizada de eventos de hipoglucemia mediante modelos de series temporales sobre datos de monitorización continua de glucosa (CGM).',
           ],
         },
         {
+          id: 'architecture',
           heading: 'Arquitectura',
           body: [
             'Lecturas de glucosa en el tiempo → modelo de series temporales personalizado → aviso ante un posible evento de hipoglucemia.',
@@ -144,18 +178,21 @@ export const projects: Project[] = [
       ],
       en: [
         {
+          id: 'context',
           heading: 'Context',
           body: [
             "Thesis for the Master's in Artificial Intelligence at Universidad Alfonso X el Sabio (March – November 2026).",
           ],
         },
         {
+          id: 'did',
           heading: 'What I did',
           body: [
             'Personalised prediction of hypoglycaemia events using time-series models on continuous glucose monitoring (CGM) data.',
           ],
         },
         {
+          id: 'architecture',
           heading: 'Architecture',
           body: [
             'Glucose readings over time → personalised time-series model → warning ahead of a possible hypoglycaemia event.',
@@ -184,21 +221,38 @@ export const projects: Project[] = [
     org: 'Softeca',
     stack: ['Web Components', 'SVG', 'TypeScript', 'Angular', '.NET', 'Java (Spring)'],
     diagram: 'oem',
+    diagramLabels: {
+      es: [
+        'SVG interactivo',
+        'Librería de Web Components',
+        'SPAs Angular',
+        'Backends .NET y Java (Spring)',
+      ],
+      en: [
+        'Interactive SVG',
+        'Web Components library',
+        'Angular SPAs',
+        '.NET and Java (Spring) backends',
+      ],
+    },
     sections: {
       es: [
         {
+          id: 'context',
           heading: 'Contexto',
           body: [
             'En Softeca desarrollábamos SPAs en Angular integradas con backends en .NET y Java (Spring) para clientes de distintos sectores. Una de ellas era una aplicación de despiece gráfico de piezas OEM.',
           ],
         },
         {
+          id: 'did',
           heading: 'Qué hice',
           body: [
             'Diseñé una librería de Web Components para esa aplicación, con imágenes SVG interactivas que permiten recorrer el despiece de cada pieza.',
           ],
         },
         {
+          id: 'architecture',
           heading: 'Arquitectura',
           body: [
             'Componentes web reutilizables con SVG interactivo, integrados en SPAs Angular sobre backends .NET y Java (Spring).',
@@ -208,18 +262,21 @@ export const projects: Project[] = [
       ],
       en: [
         {
+          id: 'context',
           heading: 'Context',
           body: [
             'At Softeca we built Angular SPAs integrated with .NET and Java (Spring) backends for clients across industries. One of them was a graphical parts-breakdown application for OEM components.',
           ],
         },
         {
+          id: 'did',
           heading: 'What I did',
           body: [
             "Designed a Web Components library for that application, with interactive SVG images to explore each part's breakdown.",
           ],
         },
         {
+          id: 'architecture',
           heading: 'Architecture',
           body: [
             'Reusable web components with interactive SVG, integrated into Angular SPAs on .NET and Java (Spring) backends.',

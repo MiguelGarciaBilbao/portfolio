@@ -56,6 +56,21 @@ describe('askReducer', () => {
   });
 
   test('reset → initial', () => {
-    expect(askReducer(select(initialAskState, 'cloud'), { type: 'reset' })).toEqual(initialAskState);
+    expect(askReducer(select(initialAskState, 'cloud'), { type: 'reset' })).toEqual(
+      initialAskState,
+    );
+  });
+});
+
+describe('typing step', () => {
+  test('advances by elapsed time, not by tick count', async () => {
+    const { charsForTick } = await import('@/lib/ask-reducer');
+    // 16 ms → 3 caracteres; si el tick llega tarde (1 s), se escribe todo lo que tocaba
+    expect(charsForTick(16, 0)).toBe(3);
+    expect(charsForTick(1000, 0)).toBe(187);
+    expect(charsForTick(1000, 180)).toBe(7);
+    // nunca se queda parado
+    expect(charsForTick(0, 0)).toBe(1);
+    expect(charsForTick(16, 50)).toBe(1);
   });
 });

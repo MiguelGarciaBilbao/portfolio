@@ -29,7 +29,9 @@
     "idle": "Elige una pregunta para empezar.",
     "disclaimer": "Respuestas escritas por mí a partir de mi CV; la recuperación es una visualización."
   },
-  "metrics": { "title": "En cifras" },
+  "metrics": {
+    "title": "En cifras"
+  },
   "stack": {
     "eyebrow": "Despiece del stack",
     "title": "Mi stack, despiezado",
@@ -55,7 +57,12 @@
     "period": "Periodo",
     "org": "Organización",
     "back": "Volver a la home",
-    "talk": "¿Encaja con lo que buscas? Hablemos."
+    "talk": "¿Encaja con lo que buscas? Hablemos.",
+    "breadcrumb": "Migas de pan",
+    "diagram": "Diagrama de arquitectura",
+    "contact": "Ir a contacto",
+    "details": "Ficha del proyecto",
+    "threshold": "umbral de hipoglucemia"
   },
   "experience": {
     "eyebrow": "Trayectoria",
@@ -63,7 +70,11 @@
     "intro": "Cinco años, dos empresas y un salto del frontend al producto completo y a la IA.",
     "details": "Ver qué hice"
   },
-  "education": { "eyebrow": "Formación", "title": "Formación", "languages": "Idiomas" },
+  "education": {
+    "eyebrow": "Formación",
+    "title": "Formación",
+    "languages": "Idiomas"
+  },
   "contact": {
     "title": "¿Hablamos?",
     "copy": "Copiar email",

@@ -80,6 +80,15 @@ describe('content integrity', () => {
     ]);
   });
 
+  test('projects have parallel ES/EN sections with an architecture section and diagram labels', () => {
+    for (const p of projectsMod.projects) {
+      expect(p.sections.es.map((s) => s.id)).toEqual(p.sections.en.map((s) => s.id));
+      expect(p.sections.es.some((s) => s.id === 'architecture')).toBe(true);
+      expect(p.diagramLabels.es.length).toBeGreaterThan(1);
+      expect(p.diagramLabels.es.length).toBe(p.diagramLabels.en.length);
+    }
+  });
+
   test('getProject returns undefined for unknown slug', () => {
     expect(projectsMod.getProject('foo')).toBeUndefined();
     expect(projectsMod.getProject('rag-esg')?.slug).toBe('rag-esg');

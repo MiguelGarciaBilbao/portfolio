@@ -32,3 +32,16 @@ export function askReducer(s: AskState, a: AskAction): AskState {
       return initialAskState;
   }
 }
+
+export const TICK_MS = 16;
+export const CHARS_PER_TICK = 3;
+
+/**
+ * Caracteres a añadir en un tick: los que corresponden al tiempo transcurrido desde que
+ * empezó la respuesta (3 cada 16 ms) menos los ya mostrados, y al menos 1. Así un tick
+ * que llega tarde (CPU lenta, render costoso) no alarga la duración total.
+ */
+export function charsForTick(elapsedMs: number, shown: number): number {
+  const target = Math.floor((elapsedMs / TICK_MS) * CHARS_PER_TICK);
+  return Math.max(1, target - shown);
+}

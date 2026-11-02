@@ -6,11 +6,6 @@ import { SectionHeader } from '@/components/ui/SectionHeader';
 import { ProjectArt } from '@/components/projects/ProjectArt';
 import { TiltCard } from '@/components/projects/TiltCard';
 
-const THRESHOLD: Record<Locale, string> = {
-  es: 'umbral de hipoglucemia',
-  en: 'hypoglycaemia threshold',
-};
-
 export async function Projects({ locale }: { locale: Locale }) {
   const t = await getTranslations('projects');
   return (
@@ -26,7 +21,7 @@ export async function Projects({ locale }: { locale: Locale }) {
                   className="project-card__link"
                 >
                   <div className="project-card__art">
-                    <ProjectArt kind={p.diagram} thresholdLabel={THRESHOLD[locale]} />
+                    <ProjectArt kind={p.diagram} thresholdLabel={t('threshold')} />
                   </div>
                   <div className="project-card__body">
                     <p className="project-card__org">{p.org}</p>
