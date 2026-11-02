@@ -14,6 +14,7 @@ import { AskCorpus } from '@/components/sections/AskCorpus';
 import { CorpusProvider } from '@/components/corpus/CorpusProvider';
 import { corpusNodes, corpusQA } from '@/content/corpus';
 import { getTranslations } from 'next-intl/server';
+import { BrainStage } from '@/components/three/BrainStage';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
@@ -33,6 +34,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
   const nodes = Object.fromEntries(
     corpusNodes.map((n) => [n.id, { id: n.id, category: n.category, title: n.title[locale], href: n.href }]),
   );
+  const brainNodes = corpusNodes.map((n) => ({ id: n.id, category: n.category }));
+  const brainTitles = Object.fromEntries(corpusNodes.map((n) => [n.id, n.title[locale]]));
   const items = qa.map((q) => ({ id: q.id, sources: q.sources, length: q.answer.length }));
   const askLabels = {
     title: t('title'),
@@ -49,11 +52,15 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
       {/* 01 + 02: columna izquierda (Hero, AskCorpus) y escenario fijo del cerebro (Task 8/9) */}
       <CorpusProvider items={items}>
         <div className="wrap hero-grid">
-          <div className="hero-grid__content">
+          <div className="hero-grid__hero">
             <Hero locale={locale} />
+          </div>
+          <div className="hero-grid__stage">
+            <BrainStage nodes={brainNodes} titles={brainTitles} />
+          </div>
+          <div className="hero-grid__ask">
             <AskCorpus qa={qa} nodes={nodes} labels={askLabels} />
           </div>
-          <div className="hero-grid__stage" aria-hidden="true" />
         </div>
       </CorpusProvider>
       <Metrics locale={locale} />
