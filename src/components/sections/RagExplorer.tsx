@@ -1,6 +1,14 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useRovingTabs } from '@/components/ui/useRovingTabs';
+import { SceneCanvas } from '@/components/three/SceneCanvas';
+import { RagPipelineFallback } from '@/components/three/RagPipelineFallback';
+
+const RagPipeline = dynamic(() => import('@/components/three/RagPipeline'), {
+  ssr: false,
+  loading: () => null,
+});
 
 export interface RagStepView {
   id: 'sources' | 'corpus' | 'embeddings' | 'vector' | 'llm' | 'reports';
@@ -17,13 +25,26 @@ export function RagExplorer({
   labels: { steps: string; loop: string };
 }) {
   const ids = steps.map((s) => s.id);
-  const { selected, tabProps, panelProps } = useRovingTabs(ids, 'corpus', 'rag');
+  const { selected, setSelected, tabProps, panelProps } = useRovingTabs(ids, 'corpus', 'rag');
   const index = Math.max(0, ids.indexOf(selected));
   const step = steps[index];
 
   return (
     <div className="explorer explorer--rag">
-      <div className="explorer__stage" data-testid="rag-stage" aria-hidden="true" />
+      <div className="explorer__stage">
+        <SceneCanvas
+          testId="rag"
+          orthographic
+          camera={{ position: [6, 6, 6], zoom: 70, near: 0.1, far: 100 }}
+          fallback={<RagPipelineFallback steps={steps} activeId={selected} />}
+        >
+          <RagPipeline
+            steps={steps.map((s) => ({ id: s.id, label: s.label }))}
+            activeId={selected}
+            onSelect={(id) => setSelected(id as RagStepView['id'])}
+          />
+        </SceneCanvas>
+      </div>
       <div className="explorer__ui">
         <ol role="tablist" aria-label={labels.steps} className="step-list">
           {steps.map((s, i) => (

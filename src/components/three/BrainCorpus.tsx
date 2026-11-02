@@ -4,18 +4,13 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Html, Line } from '@react-three/drei';
 import * as THREE from 'three';
-import type { Category } from '@/content/types';
 import { BRAIN_SEED, generateBrain, type BrainInputNode } from '@/lib/brain-geometry';
 import { useSceneQuality } from './quality';
+import { CATEGORY_COLOR } from './colors';
 
 // Regla: las escenas no importan contenido ni next-intl; todo llega por props.
 
-export const CATEGORY_COLOR: Record<Category, string> = {
-  frontend: '#2EF5B0',
-  backend: '#26C6FF',
-  ai: '#8B5CF6',
-  product: '#E8F1FF',
-};
+export { CATEGORY_COLOR };
 
 const MAX_TILT = THREE.MathUtils.degToRad(15);
 
