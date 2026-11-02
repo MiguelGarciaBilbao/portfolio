@@ -1,0 +1,74 @@
+{
+  "common": {
+    "skip": "Saltar al contenido",
+    "downloadCv": "Descargar CV",
+    "email": "Email",
+    "menu": "Menú",
+    "language": "Idioma",
+    "home": "Inicio",
+    "copyright": "© 2026 Miguel Alejandro García Bilbao"
+  },
+  "nav": {
+    "stack": "Stack",
+    "ai": "IA aplicada",
+    "projects": "Proyectos",
+    "experience": "Trayectoria",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "ctaProjects": "Ver proyectos",
+    "ctaCv": "Descargar CV",
+    "ctaEmail": "Escribirme"
+  },
+  "ask": {
+    "title": "Pregúntale a mi corpus",
+    "subtitle": "Mi experiencia, indexada como un corpus. Elige una pregunta y mira qué recupera.",
+    "questions": "Preguntas sugeridas",
+    "retrieving": "Recuperando fragmentos…",
+    "sources": "Fuentes",
+    "idle": "Elige una pregunta para empezar.",
+    "disclaimer": "Respuestas escritas por mí a partir de mi CV; la recuperación es una visualización."
+  },
+  "metrics": { "title": "En cifras" },
+  "stack": {
+    "eyebrow": "Despiece del stack",
+    "title": "Mi stack, despiezado",
+    "intro": "En Softeca diseñé una librería de Web Components para despiezar piezas OEM en SVG. Aquí uso la misma idea con lo que sé hacer: elige una capa para ver qué incluye y dónde la he usado.",
+    "layers": "Capas",
+    "used": "Dónde lo he usado"
+  },
+  "rag": {
+    "eyebrow": "IA aplicada",
+    "title": "Cómo funciona el RAG del Data Intelligence Hub",
+    "intro": "Una plataforma que analiza los datos ESG de cada empresa y genera sus informes de sostenibilidad. Elige un paso para ver qué hace.",
+    "steps": "Pasos del pipeline",
+    "loop": "Cada informe vuelve al corpus y alimenta al siguiente.",
+    "note": "Arquitectura general: no se muestran datos de clientes."
+  },
+  "projects": {
+    "eyebrow": "Proyectos",
+    "title": "Proyectos destacados",
+    "view": "Ver proyecto",
+    "next": "Siguiente proyecto",
+    "stack": "Stack",
+    "role": "Rol",
+    "period": "Periodo",
+    "org": "Organización",
+    "back": "Volver a la home",
+    "talk": "¿Encaja con lo que buscas? Hablemos."
+  },
+  "experience": {
+    "eyebrow": "Trayectoria",
+    "title": "Experiencia",
+    "intro": "Cinco años, dos empresas y un salto del frontend al producto completo y a la IA.",
+    "details": "Ver qué hice"
+  },
+  "education": { "eyebrow": "Formación", "title": "Formación", "languages": "Idiomas" },
+  "contact": {
+    "title": "¿Hablamos?",
+    "copy": "Copiar email",
+    "copied": "Email copiado",
+    "cvEs": "CV en español",
+    "cvEn": "CV en inglés"
+  }
+}

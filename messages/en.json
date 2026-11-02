@@ -1,0 +1,74 @@
+{
+  "common": {
+    "skip": "Skip to content",
+    "downloadCv": "Download CV",
+    "email": "Email",
+    "menu": "Menu",
+    "language": "Language",
+    "home": "Home",
+    "copyright": "© 2026 Miguel Alejandro García Bilbao"
+  },
+  "nav": {
+    "stack": "Stack",
+    "ai": "Applied AI",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "ctaProjects": "See projects",
+    "ctaCv": "Download CV",
+    "ctaEmail": "Email me"
+  },
+  "ask": {
+    "title": "Ask my corpus",
+    "subtitle": "My experience, indexed as a corpus. Pick a question and watch what it retrieves.",
+    "questions": "Suggested questions",
+    "retrieving": "Retrieving chunks…",
+    "sources": "Sources",
+    "idle": "Pick a question to start.",
+    "disclaimer": "Answers written by me from my CV; the retrieval is a visualisation."
+  },
+  "metrics": { "title": "In numbers" },
+  "stack": {
+    "eyebrow": "Stack breakdown",
+    "title": "My stack, exploded",
+    "intro": "At Softeca I designed a Web Components library for exploded views of OEM parts in SVG. Same idea here, applied to my own stack: pick a layer to see what it includes and where I've used it.",
+    "layers": "Layers",
+    "used": "Where I've used it"
+  },
+  "rag": {
+    "eyebrow": "Applied AI",
+    "title": "How the Data Intelligence Hub RAG works",
+    "intro": "A platform that analyses each company's ESG data and produces its sustainability reports. Pick a step to see what it does.",
+    "steps": "Pipeline steps",
+    "loop": "Each report goes back into the corpus and feeds the next one.",
+    "note": "General architecture: no client data is shown."
+  },
+  "projects": {
+    "eyebrow": "Projects",
+    "title": "Featured projects",
+    "view": "View project",
+    "next": "Next project",
+    "stack": "Stack",
+    "role": "Role",
+    "period": "Period",
+    "org": "Organisation",
+    "back": "Back to home",
+    "talk": "Sounds like a fit? Let's talk."
+  },
+  "experience": {
+    "eyebrow": "Experience",
+    "title": "Experience",
+    "intro": "Five years, two companies, and a move from frontend to full product work and AI.",
+    "details": "What I did"
+  },
+  "education": { "eyebrow": "Education", "title": "Education", "languages": "Languages" },
+  "contact": {
+    "title": "Let's talk",
+    "copy": "Copy email",
+    "copied": "Email copied",
+    "cvEs": "CV in Spanish",
+    "cvEn": "CV in English"
+  }
+}
