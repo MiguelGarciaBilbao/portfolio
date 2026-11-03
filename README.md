@@ -2,7 +2,7 @@
 
 Bilingual (ES / EN) portfolio of Miguel Alejandro García Bilbao, Senior Software Engineer (full stack & applied AI).
 
-**Live:** _URL added after the first Vercel deploy_
+**Live:** https://portfolio-delta-five-guwagbcjm2.vercel.app
 
 ## What's inside
 

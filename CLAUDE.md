@@ -4,6 +4,7 @@
 
 Portfolio bilingüe (ES/EN) en Next.js 16 (App Router, SSG) con estética "Aurora boreal" y escenas 3D (React Three Fiber). Objetivo: captar reclutadores y posicionar en buscadores junto al CV.
 
+- Producción: https://portfolio-delta-five-guwagbcjm2.vercel.app (Vercel, proyecto `portfolio`; `NEXT_PUBLIC_SITE_URL` en Production y Preview). Repo: https://github.com/MiguelGarciaBilbao/portfolio
 - Spec (autoridad): `docs/superpowers/specs/2026-11-02-portfolio-design.md`
 - Plan: `docs/superpowers/plans/2026-11-02-portfolio.md`
 - Fuentes de contenido: `docs/CV_*.pdf` y `docs/portfolio_miguel_garcia_bilbao.html`
