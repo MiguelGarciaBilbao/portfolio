@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Miguel García Bilbao · Portfolio
 
-## Getting Started
+Bilingual (ES / EN) portfolio of Miguel Alejandro García Bilbao, Senior Software Engineer (full stack & applied AI).
 
-First, run the development server:
+**Live:** _URL added after the first Vercel deploy_
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## What's inside
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Brain-shaped corpus**: a WebGL point cloud where every node is a piece of experience. "Pregúntale a mi corpus" ("ask my corpus") answers scripted questions and lights up the nodes it "retrieves".
+- **Exploded stack**: an isometric, scroll-driven breakdown of the stack layers.
+- **RAG pipeline**: the Data Intelligence Hub pipeline drawn as a loop, from sources to reports and back to the corpus.
+- **Project pages** with architecture diagrams, JSON-LD, `hreflang` and per-page Open Graph images.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Every 3D scene has a static SVG fallback with the same layout. Text never depends on WebGL. The site respects `prefers-reduced-motion` and touch pointers. Scenes are lazy-loaded once the page is idle and are skipped on software-rendered WebGL.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Stack
 
-## Learn More
+Next.js 16 (App Router, static generation) · React 19 · TypeScript · Tailwind CSS 4 · three.js + React Three Fiber + drei · next-intl (localized pathnames) · Lenis · Vitest · Playwright + axe.
 
-To learn more about Next.js, take a look at the following resources:
+## Commands
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Command | What it does |
+|---|---|
+| `npm run dev` | Development server on http://localhost:3000 |
+| `npm run build` / `npm run start` | Production build / serve it on http://localhost:3100 |
+| `npm run lint` · `npm run typecheck` | ESLint · `next typegen && tsc --noEmit` |
+| `npm test` | Unit tests (Vitest) |
+| `npm run test:e2e` | End-to-end, accessibility and JS-budget tests (Playwright, desktop + mobile) |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Configuration
 
-## Deploy on Vercel
+| Variable | Purpose |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | Public origin used for canonical URLs, `hreflang`, sitemap and Open Graph. Set it in Vercel (Production and Preview). |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Content
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+All content lives in `src/content/` (typed `Localized<T>`), sourced only from the CVs. `messages/*.json` holds UI microcopy only.

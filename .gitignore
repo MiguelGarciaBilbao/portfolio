@@ -9,3 +9,7 @@ test-results/
 *.tsbuildinfo
 next-env.d.ts
 .vercel
+
+# Originales con datos personales: se quedan en local, fuera del repo
+docs/CV_*.pdf
+docs/portfolio_miguel_garcia_bilbao.html
