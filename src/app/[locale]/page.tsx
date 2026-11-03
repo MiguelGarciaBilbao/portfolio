@@ -1,5 +1,6 @@
+import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
-import type { Locale } from '@/content/types';
+import { isLocale, type Locale } from '@/content/types';
 import { homeMetadata, personJsonLd } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { Hero } from '@/components/sections/Hero';
@@ -18,11 +19,13 @@ import { BrainStage } from '@/components/three/BrainStage';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
+  if (!isLocale(locale)) notFound();
   return homeMetadata(locale);
 }
 
 export default async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
+  if (!isLocale(locale)) notFound();
   setRequestLocale(locale);
   const t = await getTranslations('ask');
   const qa = corpusQA.map((q) => ({

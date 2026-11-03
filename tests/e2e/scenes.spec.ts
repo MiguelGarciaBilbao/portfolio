@@ -153,3 +153,32 @@ test('software WebGL renderer → static fallback only', async ({ page }) => {
   await expect(page.getByTestId('brain-canvas')).toHaveCount(0);
   expect(errors).toEqual([]);
 });
+
+test('a 3D chunk that fails to load keeps the page and the fallback', async ({
+  browser,
+  isMobile,
+}) => {
+  test.skip(isMobile, 'una vez basta');
+  // 1) qué scripts carga la página sin escenas
+  const plain = await browser.newPage();
+  await disableWebGL(plain);
+  const initial = new Set<string>();
+  plain.on('request', (r) => {
+    if (r.resourceType() === 'script') initial.add(r.url());
+  });
+  await plain.goto('/es');
+  await plain.waitForLoadState('networkidle');
+  await plain.close();
+  // 2) con GPU, todo script nuevo (los chunks 3D) falla
+  const page = await browser.newPage();
+  await spoofHardwareGpu(page);
+  await page.route('**/_next/static/chunks/**', (route) =>
+    initial.has(route.request().url()) ? route.continue() : route.abort(),
+  );
+  await page.goto('/es');
+  await page.waitForTimeout(3000);
+  await expect(page.locator('h1')).toHaveText(/Miguel/);
+  await expect(page.getByTestId('brain-fallback')).toBeVisible();
+  await expect(page.getByTestId('brain-fallback')).toHaveAttribute('data-hidden', 'false');
+  await page.close();
+});

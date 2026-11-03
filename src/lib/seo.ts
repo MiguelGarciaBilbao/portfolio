@@ -93,7 +93,7 @@ const KNOWS_ABOUT = [
   'Web Components',
   'AWS',
   'Azure',
-  'Time series forecasting',
+  'Time series',
 ];
 
 export function personJsonLd(locale: Locale): Record<string, unknown> {

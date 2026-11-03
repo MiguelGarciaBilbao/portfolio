@@ -38,6 +38,29 @@ test('unknown slug and unknown locale return 404', async ({ request }) => {
   expect((await request.get('/es/proyectos/foo')).status()).toBe(404);
   expect((await request.get('/en/projects/foo')).status()).toBe(404);
   expect((await request.get('/fr')).status()).toBe(404);
+  // rutas que no pasan por el proxy (matcher) no deben acabar en 500
+  for (const path of ['/wp-login.php', '/foo.php', '/cv', '/cvfoo', '/api', '/_vercel']) {
+    expect((await request.get(path)).status(), path).toBe(404);
+  }
+});
+
+test('lang switch hrefs are correct on a direct visit to an EN project page', async ({
+  page,
+  request,
+}) => {
+  // en el HTML del servidor (sin hidratar) y en el DOM ya hidratado
+  const html = await (await request.get('/en/projects/rag-esg')).text();
+  expect(html).toContain('href="/es/proyectos/rag-esg"');
+  await page.goto('/en/projects/rag-esg');
+  const switcher = page.locator('.lang-switch');
+  await expect(switcher.getByRole('link', { name: 'ES', exact: true })).toHaveAttribute(
+    'href',
+    '/es/proyectos/rag-esg',
+  );
+  await expect(switcher.getByRole('link', { name: 'EN', exact: true })).toHaveAttribute(
+    'href',
+    '/en/projects/rag-esg',
+  );
 });
 
 test('next project CTA cycles through projects', async ({ page }) => {

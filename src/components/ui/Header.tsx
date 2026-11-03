@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { profile } from '@/content/profile';
 import type { Locale } from '@/content/types';
 import { LangSwitch } from './LangSwitch';
+import { MobileMenu } from './MobileMenu';
 
 const SECTIONS = ['stack', 'ai', 'projects', 'experience', 'contact'] as const;
 
@@ -30,18 +31,13 @@ export async function Header({ locale }: { locale: Locale }) {
           <a href={profile.cv[locale]} className="btn btn--ghost btn--sm" download>
             {tc('downloadCv')}
           </a>
-          <details className="site-header__menu">
-            <summary aria-label={tc('menu')}>
-              <span aria-hidden="true">☰</span>
-            </summary>
-            <nav aria-label={tc('menu')}>
-              {links.map((l) => (
-                <a key={l.id} href={l.href}>
-                  {l.label}
-                </a>
-              ))}
-            </nav>
-          </details>
+          <MobileMenu label={tc('menu')}>
+            {links.map((l) => (
+              <a key={l.id} href={l.href}>
+                {l.label}
+              </a>
+            ))}
+          </MobileMenu>
         </div>
       </div>
     </header>

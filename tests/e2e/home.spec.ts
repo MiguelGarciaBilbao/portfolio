@@ -79,3 +79,14 @@ test('copy email shows confirmation', async ({ page, context, browserName }) => 
     'miguel99bilbao@gmail.com',
   );
 });
+
+test('mobile menu closes after choosing a section', async ({ page, isMobile }) => {
+  test.skip(!isMobile, 'menú móvil');
+  await page.goto('/es');
+  const menu = page.locator('details.site-header__menu');
+  await menu.locator('summary').click();
+  await expect(menu).toHaveAttribute('open', '');
+  await menu.getByRole('link', { name: 'Proyectos' }).click();
+  await expect(page).toHaveURL(/#projects$/);
+  await expect(menu).not.toHaveAttribute('open');
+});

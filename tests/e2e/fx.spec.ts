@@ -3,8 +3,12 @@ import { expect, test } from '@playwright/test';
 test('star cursor mounts on desktop', async ({ page, isMobile }) => {
   test.skip(isMobile, 'desktop only');
   await page.goto('/es');
-  await page.mouse.move(200, 200);
-  await expect(page.getByTestId('star-cursor')).toHaveCount(1);
+  // El canvas se arma con el primer pointermove tras hidratar: un usuario real sigue moviendo el ratón.
+  let x = 200;
+  await expect(async () => {
+    await page.mouse.move((x += 7), 200);
+    await expect(page.getByTestId('star-cursor')).toHaveCount(1, { timeout: 500 });
+  }).toPass();
 });
 
 test('no star cursor on touch', async ({ page, isMobile }) => {

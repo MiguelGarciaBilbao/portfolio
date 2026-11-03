@@ -137,18 +137,18 @@ export const projects: Project[] = [
     role: { es: 'Trabajo de fin de máster', en: "Master's thesis" },
     period: { es: 'Marzo – noviembre de 2026', en: 'March – November 2026' },
     org: 'Universidad Alfonso X el Sabio (UAX)',
-    stack: ['Python', 'Series temporales', 'CGM'],
+    stack: ['Series temporales', 'CGM'],
     diagram: 'timeseries',
     diagramLabels: {
       es: [
         'Lecturas de glucosa (CGM)',
         'Modelo de series temporales personalizado',
-        'Aviso de posible hipoglucemia',
+        'Predicción de eventos de hipoglucemia',
       ],
       en: [
         'Glucose readings (CGM)',
         'Personalised time-series model',
-        'Warning of a possible hypoglycaemia',
+        'Prediction of hypoglycaemia events',
       ],
     },
     sections: {
@@ -171,7 +171,7 @@ export const projects: Project[] = [
           id: 'architecture',
           heading: 'Arquitectura',
           body: [
-            'Lecturas de glucosa en el tiempo → modelo de series temporales personalizado → aviso ante un posible evento de hipoglucemia.',
+            'Lecturas de glucosa en el tiempo → modelo de series temporales personalizado → predicción de eventos de hipoglucemia.',
             'Durante el máster también he trabajado con transformers, LLMs, RAG y generación de datos sintéticos.',
           ],
         },
@@ -195,7 +195,7 @@ export const projects: Project[] = [
           id: 'architecture',
           heading: 'Architecture',
           body: [
-            'Glucose readings over time → personalised time-series model → warning ahead of a possible hypoglycaemia event.',
+            'Glucose readings over time → personalised time-series model → prediction of hypoglycaemia events.',
             'The programme also covered transformers, LLMs, RAG and synthetic data generation.',
           ],
         },
@@ -219,7 +219,7 @@ export const projects: Project[] = [
     role: { es: 'Full Stack & Technical Lead', en: 'Full Stack & Technical Lead' },
     period: { es: 'Jun 2022 – Feb 2026', en: 'Jun 2022 – Feb 2026' },
     org: 'Softeca',
-    stack: ['Web Components', 'SVG', 'TypeScript', 'Angular', '.NET', 'Java (Spring)'],
+    stack: ['Web Components', 'SVG', 'Angular', '.NET', 'Java (Spring)'],
     diagram: 'oem',
     diagramLabels: {
       es: [
@@ -248,7 +248,7 @@ export const projects: Project[] = [
           id: 'did',
           heading: 'Qué hice',
           body: [
-            'Diseñé una librería de Web Components para esa aplicación, con imágenes SVG interactivas que permiten recorrer el despiece de cada pieza.',
+            'Diseñé una librería de Web Components para esa aplicación, con imágenes SVG interactivas.',
           ],
         },
         {
@@ -272,7 +272,7 @@ export const projects: Project[] = [
           id: 'did',
           heading: 'What I did',
           body: [
-            "Designed a Web Components library for that application, with interactive SVG images to explore each part's breakdown.",
+            'Designed a Web Components library for that application, with interactive SVG images.',
           ],
         },
         {

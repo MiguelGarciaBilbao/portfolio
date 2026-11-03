@@ -6,6 +6,7 @@ import type { CanvasProps } from '@react-three/fiber';
 import { classifyGpu, downgrade, useReducedMotion, type Tier } from '@/lib/motion';
 import { qualityFor, SceneQualityContext } from './quality';
 import { probeWebGL } from './webgl';
+import { SceneErrorBoundary } from './SceneErrorBoundary';
 
 export { hasWebGL } from './webgl';
 export { useSceneQuality } from './quality';
@@ -42,6 +43,7 @@ export function SceneCanvas({
   const [visible, setVisible] = useState(false);
   const [pageVisible, setPageVisible] = useState(true);
   const [ready, setReady] = useState(false);
+  const [failed, setFailed] = useState(false);
   const [tier, setTier] = useState<Tier>(() =>
     typeof window === 'undefined' ? 'medium' : initialTier(probeWebGL().renderer),
   );
@@ -75,7 +77,7 @@ export function SceneCanvas({
   }, [reduced]);
 
   const quality = qualityFor(tier);
-  const active = mount && !reduced;
+  const active = mount && !reduced && !failed;
 
   return (
     <div ref={ref} className={['scene', className].filter(Boolean).join(' ')}>
@@ -88,18 +90,25 @@ export function SceneCanvas({
       </div>
       {active && (
         <div className="scene__canvas" data-testid={`${testId}-canvas`} aria-hidden="true">
-          <SceneQualityContext.Provider value={quality}>
-            <SceneRuntime
-              camera={camera}
-              orthographic={orthographic}
-              dpr={quality.dpr}
-              frameloop={visible && pageVisible ? 'always' : 'never'}
-              onReady={() => setReady(true)}
-              onDecline={() => setTier((t) => downgrade(t))}
-            >
-              {children}
-            </SceneRuntime>
-          </SceneQualityContext.Provider>
+          <SceneErrorBoundary
+            onError={() => {
+              setReady(false);
+              setFailed(true);
+            }}
+          >
+            <SceneQualityContext.Provider value={quality}>
+              <SceneRuntime
+                camera={camera}
+                orthographic={orthographic}
+                dpr={quality.dpr}
+                frameloop={visible && pageVisible ? 'always' : 'never'}
+                onReady={() => setReady(true)}
+                onDecline={() => setTier((t) => downgrade(t))}
+              >
+                {children}
+              </SceneRuntime>
+            </SceneQualityContext.Provider>
+          </SceneErrorBoundary>
         </div>
       )}
     </div>

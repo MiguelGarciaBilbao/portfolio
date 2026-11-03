@@ -89,6 +89,19 @@ describe('content integrity', () => {
     }
   });
 
+  test('project claims stay within the CVs (review: rule 1)', () => {
+    const tfm = projectsMod.getProject('tfm-hipoglucemia')!;
+    const oem = projectsMod.getProject('web-components-oem')!;
+    // el CV no asocia Python al TFM ni dice con qué se hizo la librería OEM
+    expect(tfm.stack).not.toContain('Python');
+    expect(oem.stack).not.toContain('TypeScript');
+    // el CV habla de predicción, no de un sistema de avisos
+    const tfmText = JSON.stringify([tfm.sections, tfm.diagramLabels]);
+    expect(tfmText).not.toMatch(/aviso|warning/i);
+    // ni detalla cómo se recorre el despiece
+    expect(JSON.stringify(oem.sections)).not.toMatch(/recorrer el despiece|explore each part/i);
+  });
+
   test('getProject returns undefined for unknown slug', () => {
     expect(projectsMod.getProject('foo')).toBeUndefined();
     expect(projectsMod.getProject('rag-esg')?.slug).toBe('rag-esg');

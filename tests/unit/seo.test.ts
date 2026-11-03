@@ -12,7 +12,17 @@ describe('siteUrl', () => {
   test('strips trailing slash', () => expect(siteUrl()).toBe('https://example.dev'));
   test('defaults to localhost', () => {
     vi.stubEnv('NEXT_PUBLIC_SITE_URL', '');
+    vi.stubEnv('VERCEL_PROJECT_PRODUCTION_URL', '');
+    vi.stubEnv('VERCEL_URL', '');
     expect(siteUrl()).toBe('http://localhost:3000');
+  });
+  test('falls back to the Vercel production domain, then the deployment URL', () => {
+    vi.stubEnv('NEXT_PUBLIC_SITE_URL', '');
+    vi.stubEnv('VERCEL_PROJECT_PRODUCTION_URL', 'portfolio-mgb.vercel.app');
+    vi.stubEnv('VERCEL_URL', 'portfolio-abc123.vercel.app');
+    expect(siteUrl()).toBe('https://portfolio-mgb.vercel.app');
+    vi.stubEnv('VERCEL_PROJECT_PRODUCTION_URL', '');
+    expect(siteUrl()).toBe('https://portfolio-abc123.vercel.app');
   });
 });
 

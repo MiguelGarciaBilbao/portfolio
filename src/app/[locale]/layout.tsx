@@ -28,6 +28,9 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: '#05070f', colorScheme: 'dark' };
 
+// Solo /es y /en: cualquier otro primer segmento (p. ej. /wp-login.php, que no pasa por el proxy) es 404.
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
