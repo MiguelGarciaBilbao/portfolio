@@ -41,6 +41,6 @@ messages/{es,en}.json        solo microcopy de UI
 3. **El contenido solo se edita en `src/content/`** (tipado `Localized<T>`). `messages/*.json` es solo para la microcopy de la UI.
 4. **Las escenas 3D (`src/components/three/`) no importan `next-intl` ni `@/content`**: los datos llegan solo por props.
 5. **Toda escena tiene fallback** estático con el mismo layout. Los canvas llevan `aria-hidden="true"`. El texto nunca depende de WebGL.
-6. **Presupuesto de JS:** < 120 KB gzip antes de cargar escenas; chunk 3D < 220 KB gzip (`tests/e2e/budget.spec.ts`). No relajar los umbrales.
+6. **Presupuesto de JS:** < 175 KB gzip antes de cargar escenas; 3D completo < 260 KB gzip (`tests/e2e/budget.spec.ts`). Re-basados con Miguel el 2026-11-03 sobre lo medido (Next 16 + React ≈ 136 KB por sí solos). No relajarlos más sin su visto bueno.
 7. Respetar `prefers-reduced-motion` y el puntero táctil (sin cursor de estrellas ni Lenis).
 8. Tokens de color en `src/app/globals.css` (`@theme`). No hardcodear colores fuera de ahí salvo en shaders y en imágenes OG.

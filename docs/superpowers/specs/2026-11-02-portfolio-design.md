@@ -351,8 +351,8 @@ Hay unos 60 nodos, uno por bullet del CV, habilidad agrupada, proyecto y formaci
 | Móvil táctil | Sin cursor personalizado, sin hover en el cerebro, inclinación de tarjetas desactivada. |
 
 **Presupuesto de JavaScript:**
-- Fuera de las escenas 3D: < 120 KB gzip.
-- Chunk 3D compartido: < 220 KB gzip, cargado de forma diferida.
+- Fuera de las escenas 3D: < 175 KB gzip *(re-basado el 2026-11-03: el framework ya ocupa ≈ 136 KB; antes 120 KB)*.
+- JS 3D completo (three, R3F, drei y escenas): < 260 KB gzip, cargado de forma diferida *(re-basado el 2026-11-03; antes 220 KB)*.
 - Lo verifico con `@next/bundle-analyzer`.
 
 **Recursos:**

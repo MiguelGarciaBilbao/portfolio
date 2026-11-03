@@ -27,7 +27,7 @@ export function IsoStackFallback({
   const H = 14;
   const GAP = 46;
   return (
-    <svg viewBox="-200 -150 400 330" className="iso-fallback" aria-hidden="true" focusable="false">
+    <svg viewBox="-150 -150 420 330" className="iso-fallback" aria-hidden="true" focusable="false">
       {[...layers].reverse().map((l, ri) => {
         const i = layers.length - 1 - ri;
         const z = (layers.length - 1 - i) * GAP - 80;

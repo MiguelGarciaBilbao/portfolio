@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Html, Line } from '@react-three/drei';
+import { Html } from '@react-three/drei';
 import * as THREE from 'three';
 import { BRAIN_SEED, generateBrain, type BrainInputNode } from '@/lib/brain-geometry';
 import { useSceneQuality } from './quality';
@@ -259,6 +259,27 @@ export default function BrainCorpus({
         .filter((p): p is [number, number, number] => Boolean(p)),
     [activeIds, geometry],
   );
+  // Haz entre los nodos activos: línea nativa de three (la de drei arrastra three-stdlib, ~4 KB gzip).
+  const beam = useMemo(() => {
+    if (activePoints.length < 2) return null;
+    const geo = new THREE.BufferGeometry().setFromPoints(
+      activePoints.map((p) => new THREE.Vector3(...p)),
+    );
+    const mat = new THREE.LineBasicMaterial({
+      color: '#2EF5B0',
+      transparent: true,
+      opacity: 0.85,
+      toneMapped: false,
+    });
+    return new THREE.Line(geo, mat);
+  }, [activePoints]);
+  useEffect(
+    () => () => {
+      beam?.geometry.dispose();
+      (beam?.material as THREE.Material | undefined)?.dispose();
+    },
+    [beam],
+  );
   const hovered = hoveredId ? geometry.nodes.find((n) => n.id === hoveredId) : undefined;
 
   return (
@@ -311,9 +332,7 @@ export default function BrainCorpus({
             <sphereGeometry args={[0.028, 14, 14]} />
             <meshBasicMaterial toneMapped={false} />
           </instancedMesh>
-          {activePoints.length > 1 && (
-            <Line points={activePoints} color="#2EF5B0" lineWidth={1.6} transparent opacity={0.8} />
-          )}
+          {beam && <primitive object={beam} />}
           {hovered && (
             <Html position={hovered.position} center distanceFactor={6} zIndexRange={[20, 0]}>
               <span className="brain-tooltip" data-cat={hovered.category}>

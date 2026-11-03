@@ -139,7 +139,7 @@ test('scene fallbacks fill their stage (no collapsed boxes)', async ({ page }) =
   for (const id of ['brain', 'stack', 'rag']) {
     const box = await page.getByTestId(`${id}-fallback`).boundingBox();
     expect(box, id).not.toBeNull();
-    expect(box!.height, `${id} height`).toBeGreaterThan(300);
+    expect(box!.height, `${id} height`).toBeGreaterThan(200); // detecta el colapso a 0 (el cerebro en móvil mide ~270)
     expect(box!.width, `${id} width`).toBeGreaterThan(300);
   }
 });

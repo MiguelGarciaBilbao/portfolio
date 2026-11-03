@@ -551,6 +551,8 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
     position: sticky;
     top: var(--header-h);
     height: calc(100svh - var(--header-h));
+    aspect-ratio: auto;
+    max-height: none;
     min-height: 0;
   }
 }
@@ -1381,7 +1383,9 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
 }
 .hero-grid__stage {
   grid-area: stage;
-  height: min(62vh, 520px);
+  /* en una columna, la caja sigue la proporción del cerebro (viewBox 3.3 × 2.4): sin hueco muerto */
+  aspect-ratio: 11 / 8;
+  max-height: 62vh;
   min-height: 0;
 }
 .hero-grid__ask {
@@ -1397,6 +1401,8 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
     position: sticky;
     top: var(--header-h);
     height: calc(100svh - var(--header-h));
+    aspect-ratio: auto;
+    max-height: none;
   }
 }
 .brain-fallback {
@@ -1471,6 +1477,9 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
   opacity: 0.5;
 }
 .breadcrumb a {
+  /* objetivo táctil ≥ 24 px de alto (WCAG 2.5.8) sin cambiar el aspecto */
+  display: inline-block;
+  padding-block: 5px;
   text-decoration: none;
 }
 .breadcrumb a:hover {
