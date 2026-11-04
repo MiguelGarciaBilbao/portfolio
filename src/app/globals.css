@@ -29,7 +29,7 @@
   --step-2: 1.65rem;
   --step-3: 2.0625rem;
   --step-4: clamp(2.2rem, 4.2vw, 3.25rem);
-  --step-display: clamp(2.9rem, 7.4vw, 6.25rem);
+  --step-display: clamp(2.9rem, 5.6vw, 6.25rem);
   /* Color por categoría (coincide con los nodos del cerebro) */
   --cat-frontend: var(--color-mint);
   --cat-backend: var(--color-cyan);
@@ -583,6 +583,7 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
 }
 .hero__role {
   margin: 28px 0 0;
+  text-wrap: balance;
   font-size: var(--step-1);
   font-weight: 600;
   font-stretch: 108%;
@@ -592,6 +593,7 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
 }
 .hero__lead {
   margin: 18px 0 0;
+  max-width: 44ch;
   color: color-mix(in srgb, var(--color-ink) 88%, var(--color-muted));
 }
 .hero__body {
@@ -604,26 +606,74 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
   gap: 12px;
   margin-top: 34px;
 }
-@media (max-width: 640px) {
+/* Escritorio bajo (portátiles de 720–780 px): se oculta el cuerpo para proteger los CTA */
+@media (min-width: 641px) and (max-height: 780px) {
   .hero {
-    min-height: auto;
-    padding-block: 36px 24px;
+    padding-block: 28px 32px;
   }
   .hero__status {
     margin-bottom: 22px;
   }
   .hero__role {
     margin-top: 20px;
-    font-size: 1.1rem;
   }
   .hero__body {
     display: none;
   }
   .hero__actions {
-    margin-top: 24px;
+    margin-top: 26px;
+  }
+}
+/* Móvil: nombre, rol, entradilla y los tres CTA tienen que caber sin scroll (desde 320×568).
+   El estado pasa debajo de los CTA y la entradilla baja a cuerpo de texto. */
+@media (max-width: 640px) {
+  .hero {
+    min-height: auto;
+    padding-block: 28px 24px;
+  }
+  .hero__status {
+    order: 1;
+    margin: 24px 0 0;
+    gap: 8px 18px;
+  }
+  .hero__title {
+    font-size: clamp(2.5rem, 12.5vw, 2.9rem);
+  }
+  .hero__role {
+    margin-top: 16px;
+    font-size: 1.1rem;
+  }
+  .hero__lead {
+    margin-top: 12px;
+    font-size: var(--step-0);
+    line-height: 1.5;
+  }
+  .hero__body {
+    display: none;
+  }
+  /* CTA principal a todo el ancho; CV y email comparten la segunda fila */
+  .hero__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 22px;
+  }
+  .hero__actions .btn:first-child {
+    grid-column: 1 / -1;
   }
   .hero__actions .btn {
-    flex: 1 1 auto;
+    padding-inline: 0.75rem;
+  }
+}
+@media (max-width: 640px) and (max-height: 700px) {
+  .hero {
+    padding-top: 18px;
+  }
+  .hero__role {
+    margin-top: 12px;
+  }
+  .hero__actions {
+    margin-top: 18px;
   }
 }
 @keyframes node-pulse {
@@ -928,29 +978,6 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
 }
 .copy-status:empty {
   display: none;
-}
-.hero__title {
-  font-size: clamp(2.9rem, 5.6vw, 6.25rem);
-}
-.hero__lead {
-  max-width: 44ch;
-}
-@media (min-width: 641px) and (max-height: 780px) {
-  .hero {
-    padding-block: 28px 32px;
-  }
-  .hero__status {
-    margin-bottom: 22px;
-  }
-  .hero__role {
-    margin-top: 20px;
-  }
-  .hero__body {
-    display: none;
-  }
-  .hero__actions {
-    margin-top: 26px;
-  }
 }
 
 /* ───────────── 04/05 · Exploradores (stack y RAG) ───────────── */

@@ -18,7 +18,8 @@ export async function Hero({ locale }: { locale: Locale }) {
       <h1 id="hero-title" className="display hero__title">
         <span>{first}</span> <span>{rest.join(' ')}</span>
       </h1>
-      <p className="hero__role">{profile.role[locale]}</p>
+      {/* "Full Stack" no se parte entre líneas (el rol se equilibra con text-wrap: balance) */}
+      <p className="hero__role">{profile.role[locale].replace('Full Stack', 'Full\u00a0Stack')}</p>
       <p className="lead hero__lead">{profile.lead[locale]}</p>
       <p className="prose-muted hero__body">{profile.body[locale]}</p>
       <div className="hero__actions">

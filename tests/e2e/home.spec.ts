@@ -22,6 +22,26 @@ for (const locale of ['es', 'en'] as const) {
       }
     });
 
+    // Móviles pequeños y viewports recortados por la barra de Safari / webview de LinkedIn
+    for (const viewport of [
+      { width: 375, height: 667 },
+      { width: 360, height: 640 },
+      { width: 390, height: 664 },
+      { width: 320, height: 568 },
+    ]) {
+      test(`three CTAs above the fold at ${viewport.width}×${viewport.height}`, async ({
+        page,
+      }) => {
+        await page.setViewportSize(viewport);
+        await page.goto(`/${locale}`);
+        const hero = page.locator('#hero');
+        for (const name of Object.values(CTA[locale])) {
+          const link = hero.getByRole('link', { name, exact: true });
+          await expect(link).toBeInViewport({ ratio: 1 });
+        }
+      });
+    }
+
     test('experience lists three roles and expands', async ({ page }) => {
       await page.goto(`/${locale}`);
       const exp = page.locator('#experience');
