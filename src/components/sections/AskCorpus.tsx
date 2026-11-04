@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, type KeyboardEvent } from 'react';
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { Link } from '@/i18n/navigation';
 import type { Category, ProjectSlug, SectionId } from '@/content/types';
 import { useCorpus } from '@/components/corpus/CorpusProvider';
@@ -38,6 +38,36 @@ export function AskCorpus({
 }) {
   const { state, select, setHovered } = useCorpus();
   const refs = useRef<(HTMLButtonElement | null)[]>([]);
+  const panelRef = useRef<HTMLDivElement>(null);
+  // La pregunta automática no se anuncia: el lector de pantalla solo oye lo que el visitante pidió.
+  const [userAsked, setUserAsked] = useState(false);
+  const latest = useRef({ qaId: state.qaId, select });
+  useEffect(() => {
+    latest.current = { qaId: state.qaId, select };
+  }, [state.qaId, select]);
+
+  // Al entrar el panel en pantalla, el corpus responde la primera pregunta (una sola vez y solo si
+  // el visitante aún no ha elegido): la demostración no espera a que alguien descubra los botones.
+  const firstId = qa[0]?.id;
+  useEffect(() => {
+    const panel = panelRef.current;
+    if (!panel || !firstId || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (!entries.some((e) => e.isIntersecting)) return;
+        io.disconnect();
+        if (!latest.current.qaId) latest.current.select(firstId);
+      },
+      { threshold: 0.6 },
+    );
+    io.observe(panel);
+    return () => io.disconnect();
+  }, [firstId]);
+
+  const choose = (id: string) => {
+    setUserAsked(true);
+    select(id);
+  };
   const current = qa.find((q) => q.id === state.qaId);
   const selectedIndex = qa.findIndex((q) => q.id === state.qaId);
 
@@ -47,7 +77,7 @@ export function AskCorpus({
     e.preventDefault();
     const next = (i + delta + qa.length) % qa.length;
     refs.current[next]?.focus();
-    select(qa[next].id);
+    choose(qa[next].id);
   };
 
   const showSources =
@@ -74,7 +104,7 @@ export function AskCorpus({
               aria-checked={checked}
               tabIndex={checked || (selectedIndex === -1 && i === 0) ? 0 : -1}
               className="ask__q"
-              onClick={() => select(q.id)}
+              onClick={() => choose(q.id)}
               onKeyDown={(e) => onKey(e, i)}
             >
               {q.question}
@@ -83,7 +113,7 @@ export function AskCorpus({
         })}
       </div>
 
-      <div className="ask__panel" data-status={state.status}>
+      <div className="ask__panel" data-status={state.status} ref={panelRef}>
         <p className="ask__prompt mono" aria-hidden="true">
           <span className="ask__caret">&gt;</span> query:{' '}
           {current ? (
@@ -108,7 +138,7 @@ export function AskCorpus({
           </>
         )}
         <p className="sr-only" aria-live="polite">
-          {current && state.status === 'done' ? current.answer : ''}
+          {userAsked && current && state.status === 'done' ? current.answer : ''}
         </p>
 
         {current && showSources && (

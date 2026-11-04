@@ -28,7 +28,15 @@
     "retrieving": "Recuperando fragmentos…",
     "sources": "Fuentes",
     "idle": "Elige una pregunta para empezar.",
-    "disclaimer": "Respuestas escritas por mí a partir de mi CV; la recuperación es una visualización."
+    "disclaimer": "Respuestas escritas por mí a partir de mi CV; la recuperación es una visualización.",
+    "stageCta": "Pregúntale a mi corpus",
+    "legendLabel": "Qué representa cada color del cerebro",
+    "legend": {
+      "frontend": "Frontend",
+      "backend": "Backend y cloud",
+      "ai": "IA aplicada",
+      "product": "Producto y equipo"
+    }
   },
   "metrics": {
     "title": "En cifras"

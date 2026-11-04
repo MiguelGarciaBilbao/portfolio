@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
-import { isLocale, type Locale } from '@/content/types';
+import { isLocale, type Category, type Locale } from '@/content/types';
 import { homeMetadata, personJsonLd } from '@/lib/seo';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { Hero } from '@/components/sections/Hero';
@@ -16,6 +16,8 @@ import { CorpusProvider } from '@/components/corpus/CorpusProvider';
 import { corpusNodes, corpusQA } from '@/content/corpus';
 import { getTranslations } from 'next-intl/server';
 import { BrainStage } from '@/components/three/BrainStage';
+
+const CATEGORIES: Category[] = ['frontend', 'backend', 'ai', 'product'];
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
@@ -63,6 +65,29 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
           </div>
           <div className="hero-grid__stage">
             <BrainStage nodes={brainNodes} titles={brainTitles} />
+            {/* Leyenda del cerebro: texto real fuera del canvas (la escena no recibe microcopy) */}
+            <div className="stage-key" data-testid="stage-key">
+              <ul className="stage-key__legend" aria-label={t('legendLabel')}>
+                {CATEGORIES.map((c) => (
+                  <li key={c} className="node-mark" data-cat={c}>
+                    {t(`legend.${c}`)}
+                  </li>
+                ))}
+              </ul>
+              <a href="#ask" className="stage-key__ask">
+                {t('stageCta')}
+                <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                  <path
+                    d="M8 2.5v10m0 0L3.5 8M8 12.5 12.5 8"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
           <div className="hero-grid__ask">
             <AskCorpus qa={qa} nodes={nodes} labels={askLabels} />

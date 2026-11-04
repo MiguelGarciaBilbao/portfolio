@@ -28,7 +28,15 @@
     "retrieving": "Retrieving chunks…",
     "sources": "Sources",
     "idle": "Pick a question to start.",
-    "disclaimer": "Answers written by me from my CV; the retrieval is a visualisation."
+    "disclaimer": "Answers written by me from my CV; the retrieval is a visualisation.",
+    "stageCta": "Ask my corpus",
+    "legendLabel": "What each colour in the brain stands for",
+    "legend": {
+      "frontend": "Frontend",
+      "backend": "Backend & cloud",
+      "ai": "Applied AI",
+      "product": "Product & team"
+    }
   },
   "metrics": {
     "title": "In numbers"

@@ -535,27 +535,6 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
 }
 
 /* ───────────── 01 · Hero ───────────── */
-.hero-grid {
-  display: grid;
-  padding-top: var(--header-h);
-}
-.hero-grid__stage {
-  min-height: 56vh;
-}
-@media (min-width: 1024px) {
-  .hero-grid {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-    gap: 32px;
-  }
-  .hero-grid__stage {
-    position: sticky;
-    top: var(--header-h);
-    height: calc(100svh - var(--header-h));
-    aspect-ratio: auto;
-    max-height: none;
-    min-height: 0;
-  }
-}
 .hero {
   display: flex;
   flex-direction: column;
@@ -1282,6 +1261,34 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
 .ask__q:hover {
   border-color: var(--color-mint);
 }
+/* Móvil: las preguntas van en una fila deslizable en vez de un muro de 9 píldoras */
+@media (max-width: 640px) {
+  .ask__questions {
+    flex-wrap: nowrap;
+    margin-inline: calc(var(--gutter) * -1);
+    padding: 4px var(--gutter) 8px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      var(--color-bg) var(--gutter),
+      var(--color-bg) calc(100% - 48px),
+      transparent
+    );
+  }
+  .ask__questions::-webkit-scrollbar {
+    display: none;
+  }
+  .ask__q {
+    flex: none;
+    white-space: nowrap;
+    scroll-snap-align: start;
+  }
+}
 .ask__q[aria-checked='true'] {
   background: linear-gradient(90deg, var(--color-mint), var(--color-cyan));
   border-color: transparent;
@@ -1401,8 +1408,13 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
   }
 }
 
-/* 01+02 · Hero con escenario fijo: hero | cerebro / ask | cerebro */
+/* 01+02 · Hero con escenario fijo: hero | cerebro / ask | cerebro.
+   El cerebro se queda fijo mientras se lee "Pregúntale a mi corpus" (también en móvil),
+   para que la recuperación y la respuesta se vean a la vez. */
 .hero-grid {
+  display: grid;
+  padding-top: var(--header-h);
+  grid-template-columns: minmax(0, 1fr);
   grid-template-areas: 'hero' 'stage' 'ask';
 }
 .hero-grid__hero {
@@ -1410,26 +1422,108 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
 }
 .hero-grid__stage {
   grid-area: stage;
+  position: sticky;
+  top: var(--header-h);
+  z-index: 2;
+  isolation: isolate;
   /* en una columna, la caja sigue la proporción del cerebro (viewBox 3.3 × 2.4): sin hueco muerto */
   aspect-ratio: 11 / 8;
-  max-height: 62vh;
+  max-height: 44vh;
   min-height: 0;
+}
+/* En una columna el contenido pasa por debajo del cerebro: fondo de noche con el borde inferior fundido */
+.hero-grid__stage::before {
+  content: '';
+  position: absolute;
+  /* el fundido queda por debajo de la caja: la leyenda nunca se cruza con el texto que pasa */
+  inset: 0 calc(var(--gutter) * -1) -28px;
+  z-index: -1;
+  background: var(--color-bg);
+  mask-image: linear-gradient(to bottom, var(--color-bg) calc(100% - 28px), transparent);
 }
 .hero-grid__ask {
   grid-area: ask;
 }
 @media (min-width: 1024px) {
   .hero-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
     grid-template-areas: 'hero stage' 'ask stage';
     grid-template-rows: auto auto;
+    gap: 32px;
     align-items: start;
   }
   .hero-grid__stage {
-    position: sticky;
-    top: var(--header-h);
     height: calc(100svh - var(--header-h));
     aspect-ratio: auto;
     max-height: none;
+  }
+  .hero-grid__stage::before {
+    display: none;
+  }
+}
+
+/* Leyenda del cerebro: qué significa cada color y acceso a las preguntas */
+.stage-key {
+  position: absolute;
+  inset: auto 0 6px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 20px;
+  pointer-events: none;
+}
+.stage-key__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.stage-key__legend .node-mark {
+  font-size: 0.75rem;
+}
+.stage-key__ask {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--color-line);
+  background: color-mix(in srgb, var(--color-bg-2) 60%, transparent);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-decoration: none;
+  pointer-events: auto;
+  transition: border-color 0.2s;
+}
+.stage-key__ask:hover {
+  border-color: var(--color-mint);
+}
+.stage-key__ask svg {
+  transition: transform 0.25s var(--ease-out-soft);
+}
+.stage-key__ask:hover svg {
+  transform: translateY(2px);
+}
+@media (min-width: 1024px) {
+  .stage-key {
+    inset: auto 0 32px;
+  }
+}
+@media (max-width: 1023px) {
+  /* En una columna las preguntas están justo debajo: el enlace sobra */
+  .stage-key__ask {
+    display: none;
+  }
+  .stage-key {
+    inset: auto 0 4px;
+  }
+  .stage-key__legend {
+    gap: 4px 14px;
   }
 }
 .brain-fallback {
