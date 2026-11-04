@@ -59,3 +59,17 @@ test.describe('mobile', () => {
     await expect(ask.getByTestId('ask-answer')).toBeInViewport();
   });
 });
+
+// Momento de autor: mientras el corpus recupera, un barrido de luz cruza el cerebro.
+test('retrieval sweeps a beam of light across the brain', async ({ page }) => {
+  await page.goto('/es');
+  const ask = page.locator('#ask');
+  const sweep = () =>
+    page
+      .locator('.hero-grid__stage')
+      .evaluate((el) => getComputedStyle(el, '::after').animationName);
+  expect(await sweep()).toBe('none');
+  await ask.getByRole('radio', { name: corpusQA[2].question.es }).click();
+  await expect(ask.locator('[data-status="retrieving"]')).toBeVisible();
+  expect(await sweep()).toBe('corpus-sweep');
+});

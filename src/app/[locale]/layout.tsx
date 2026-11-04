@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { Archivo, JetBrains_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata, Viewport } from 'next';
 import { routing } from '@/i18n/routing';
 import { siteUrl } from '@/lib/site';
@@ -10,6 +10,8 @@ import { Header } from '@/components/ui/Header';
 import { SkipLink } from '@/components/ui/SkipLink';
 import { Aurora } from '@/components/fx/Aurora';
 import { LensCursor } from '@/components/fx/LensCursor';
+import { ConsoleSignature } from '@/components/fx/ConsoleSignature';
+import { profile } from '@/content/profile';
 import { SmoothScroll } from '@/components/fx/SmoothScroll';
 
 const archivo = Archivo({
@@ -45,6 +47,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
+  const tc = await getTranslations('console');
 
   return (
     <html lang={locale} className={`${archivo.variable} ${mono.variable}`}>
@@ -55,6 +58,12 @@ export default async function LocaleLayout({
           <Header locale={locale} />
           {children}
           <LensCursor />
+          <ConsoleSignature
+            hello={tc('hello')}
+            repo={`${profile.github}/portfolio`}
+            fit={tc('fit')}
+            email={profile.email}
+          />
           <SmoothScroll />
         </NextIntlClientProvider>
       </body>

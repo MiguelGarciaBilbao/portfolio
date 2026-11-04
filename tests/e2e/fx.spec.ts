@@ -59,3 +59,17 @@ test('aurora background is present and decorative', async ({ page }) => {
   await page.goto('/es');
   await expect(page.getByTestId('aurora')).toHaveAttribute('aria-hidden', 'true');
 });
+
+// Para quien abre las herramientas de desarrollo: una firma con el repo y el contacto.
+for (const locale of ['es', 'en'] as const) {
+  test(`console signature points to the repo and email (${locale})`, async ({ page }) => {
+    const lines: string[] = [];
+    page.on('console', (m) => lines.push(m.text()));
+    await page.goto(`/${locale}`);
+    await expect
+      .poll(() => lines.join('\n'))
+      .toContain('https://github.com/MiguelGarciaBilbao/portfolio');
+    expect(lines.join('\n')).toContain('miguel99bilbao@gmail.com');
+    expect(lines.join('\n')).not.toMatch(/\+?\d[\d\s]{8,}/);
+  });
+}

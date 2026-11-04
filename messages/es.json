@@ -90,5 +90,9 @@
     "copied": "Email copiado",
     "cvEs": "CV en español",
     "cvEn": "CV en inglés"
+  },
+  "console": {
+    "hello": "¿Curioseando el código? Este portfolio es open source:",
+    "fit": "Si mi perfil encaja con lo que buscas, escríbeme:"
   }
 }

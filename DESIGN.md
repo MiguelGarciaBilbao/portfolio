@@ -244,6 +244,9 @@ Formas suaves y orgánicas, como luz difusa. Lo interactivo pequeño es píldora
 ### Signature: Aurora
 Capa fija detrás de todo: degradado radial de noche, cuatro blobs desenfocados (70 px, opacidad 0.26, `mix-blend-mode: screen`) que derivan entre 28 y 46 s, estrellas en canvas 2D y grano al 5 %. Con "reducir movimiento" se queda quieta.
 
+### Signature: Barrido de recuperación
+El único momento de movimiento con autoría: mientras el corpus "recupera fragmentos" (600 ms), una banda de luz menta → cian → violeta cruza el cerebro de izquierda a derecha (`mix-blend-mode: screen`, máscara elíptica para que no se vean bordes de caja, curva simétrica). Solo CSS (`:has()` sobre el estado del panel). Con "reducir movimiento" no aparece.
+
 ### Signature: Lente de observatorio (cursor)
 El cursor nativo se mantiene siempre. Detrás del contenido y encima de la aurora, un halo tenue (420 px, menta al 14 % → cian al 7 %, `mix-blend-mode: screen`) sigue al ratón sin retardo y aviva el cielo bajo el puntero; sobre enlaces y botones se recoge al 42 %, como una lente que enfoca. Solo con puntero fino y sin "reducir movimiento"; sin canvas.
 
