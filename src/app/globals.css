@@ -1399,6 +1399,7 @@ main:focus {
   font-weight: 600;
 }
 .ask__panel {
+  display: grid;
   margin-top: 22px;
   min-height: 228px;
   padding: 22px 22px 20px;
@@ -1407,6 +1408,17 @@ main:focus {
   background: color-mix(in srgb, var(--color-bg) 70%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+.ask__live,
+.ask__sizer,
+.ask__sizer > * {
+  grid-area: 1 / 1;
+  min-width: 0;
+}
+.ask__sizer {
+  display: grid;
+  visibility: hidden;
+  pointer-events: none;
 }
 .ask__prompt {
   margin: 0;
@@ -1539,10 +1551,11 @@ main:focus {
   content: '';
   position: absolute;
   /* el fundido queda por debajo de la caja: la leyenda nunca se cruza con el texto que pasa */
-  inset: 0 calc(var(--gutter) * -1) -28px;
+  /* franja sólida y fundido corto: el texto que pasa por debajo no se lee a medias */
+  inset: 0 calc(var(--gutter) * -1) -24px;
   z-index: -1;
   background: var(--color-bg);
-  mask-image: linear-gradient(to bottom, var(--color-bg) calc(100% - 28px), transparent);
+  mask-image: linear-gradient(to bottom, var(--color-bg) calc(100% - 10px), transparent);
 }
 /* Recuperación: un barrido de luz cruza el cerebro mientras el corpus busca (600 ms, una vez) */
 .hero-grid__stage::after {
@@ -1554,11 +1567,11 @@ main:focus {
   mix-blend-mode: screen;
   background: linear-gradient(
     100deg,
-    transparent 40%,
-    color-mix(in srgb, var(--color-mint) 12%, transparent) 47%,
-    color-mix(in srgb, var(--color-cyan) 26%, transparent) 50%,
-    color-mix(in srgb, var(--color-violet) 12%, transparent) 53%,
-    transparent 60%
+    transparent 36%,
+    color-mix(in srgb, var(--color-mint) 30%, transparent) 45%,
+    color-mix(in srgb, var(--color-cyan) 58%, transparent) 50%,
+    color-mix(in srgb, var(--color-violet) 30%, transparent) 55%,
+    transparent 64%
   );
   /* la luz se funde con la silueta del cerebro: sin bordes de caja */
   mask-image: radial-gradient(ellipse 46% 36% at 50% 48%, var(--color-bg) 35%, transparent 100%);

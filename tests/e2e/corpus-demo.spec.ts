@@ -58,6 +58,54 @@ test.describe('mobile', () => {
     await expect(page.locator('.hero-grid__stage')).toBeInViewport({ ratio: 0.9 });
     await expect(ask.getByTestId('ask-answer')).toBeInViewport();
   });
+
+  // Si la fila de preguntas está al borde de la pantalla, al tocar una la página se coloca
+  // para que la pregunta y su respuesta se lean juntas bajo el cerebro fijo.
+  test('tapping a question keeps the question and its answer on screen together', async ({
+    page,
+  }) => {
+    await page.goto('/es');
+    const ask = page.locator('#ask');
+    const row = ask.getByRole('radiogroup');
+    await row.scrollIntoViewIfNeeded();
+    await page.evaluate(() => {
+      const r = document.querySelector('.ask__questions')!.getBoundingClientRect();
+      window.scrollBy(0, r.bottom - innerHeight + 4);
+    });
+    const qa = corpusQA[3];
+    await ask.getByRole('radio', { name: qa.question.es }).click();
+    await expect(ask.locator('.ask__panel')).toHaveAttribute('data-status', 'done', {
+      timeout: 15_000,
+    });
+    await expect(async () => {
+      const stageBottom = await page
+        .locator('.hero-grid__stage')
+        .evaluate((el) => el.getBoundingClientRect().bottom);
+      const vh = await page.evaluate(() => innerHeight);
+      const pill = (await ask.getByRole('radio', { name: qa.question.es }).boundingBox())!;
+      const answer = (await ask.getByTestId('ask-answer').boundingBox())!;
+      expect(pill.y).toBeGreaterThanOrEqual(stageBottom - 1);
+      expect(pill.y + pill.height).toBeLessThanOrEqual(vh);
+      expect(answer.y).toBeGreaterThanOrEqual(stageBottom - 1);
+      expect(answer.y + 48).toBeLessThanOrEqual(vh);
+    }).toPass({ timeout: 3000 });
+  });
+});
+
+// Sin saltos: el panel mide siempre lo que la respuesta más larga, sea cual sea la elegida.
+test('the answer panel keeps its height whatever the answer', async ({ page }) => {
+  await page.goto('/es');
+  const ask = page.locator('#ask');
+  const panel = ask.locator('.ask__panel');
+  await panel.scrollIntoViewIfNeeded();
+  const byLength = [...corpusQA].sort((a, b) => a.answer.es.length - b.answer.es.length);
+  const heights: number[] = [];
+  for (const qa of [byLength[0], byLength[byLength.length - 1], byLength[1]]) {
+    await ask.getByRole('radio', { name: qa.question.es }).click();
+    await expect(panel).toHaveAttribute('data-status', 'done', { timeout: 15_000 });
+    heights.push((await panel.boundingBox())!.height);
+  }
+  expect(Math.max(...heights) - Math.min(...heights)).toBeLessThan(1);
 });
 
 // Momento de autor: mientras el corpus recupera, un barrido de luz cruza el cerebro.
