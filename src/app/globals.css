@@ -867,6 +867,69 @@ main:focus {
   margin: 0;
   font-size: clamp(3rem, 10vw, 8.5rem);
 }
+.contact__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: 'portrait' 'title' 'body';
+}
+.contact__title {
+  grid-area: title;
+  position: relative;
+  z-index: 1;
+}
+.contact__body {
+  grid-area: body;
+}
+.contact__body {
+  min-width: 0;
+}
+
+/* Retrato constelación: la foto fija en reposo; el vídeo dibuja la constelación encima una vez.
+   Los bordes se funden con la noche (el fondo de la imagen ya es cielo) en vez de recortarse. */
+.portrait {
+  grid-area: portrait;
+  position: relative;
+  width: min(64vw, 280px);
+  aspect-ratio: 1;
+  margin: 0 0 8px -4%;
+  isolation: isolate;
+  -webkit-mask-image: radial-gradient(closest-side at 50% 46%, #000 60%, transparent 100%);
+  mask-image: radial-gradient(closest-side at 50% 46%, #000 60%, transparent 100%);
+}
+.portrait__still,
+.portrait__motion {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.portrait__motion {
+  opacity: 0;
+  filter: blur(6px);
+  transition:
+    opacity 0.9s cubic-bezier(0.45, 0, 0.55, 1),
+    filter 0.9s cubic-bezier(0.45, 0, 0.55, 1);
+}
+.portrait[data-state='playing'] .portrait__motion {
+  opacity: 1;
+  filter: blur(0);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (min-width: 1024px) {
+  .contact__grid {
+    grid-template-columns: minmax(0, 1fr) clamp(320px, 32vw, 460px);
+    grid-template-areas: 'title title' 'body portrait';
+    align-items: center;
+    column-gap: clamp(32px, 5vw, 80px);
+  }
+  .portrait {
+    width: 100%;
+    margin: -48px 0 -64px;
+  }
+}
 .contact__lead {
   margin: 24px 0 0;
   max-width: 46ch;

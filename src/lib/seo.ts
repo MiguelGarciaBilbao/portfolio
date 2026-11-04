@@ -109,7 +109,7 @@ export function personJsonLd(locale: Locale): Record<string, unknown> {
     description: profile.lead[locale],
     email: `mailto:${profile.email}`,
     url,
-    image: `${url}/opengraph-image`,
+    image: `${siteUrl()}${profile.portrait.image}`,
     sameAs: [profile.linkedin, profile.github],
     knowsAbout: KNOWS_ABOUT,
     knowsLanguage: ['es', 'en'],

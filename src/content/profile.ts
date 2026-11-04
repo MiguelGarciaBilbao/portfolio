@@ -14,6 +14,13 @@ export const profile: {
   status: Localized<string[]>;
   lookingFor: Localized<string>;
   cv: Localized<string>;
+  portrait: {
+    image: string;
+    width: number;
+    height: number;
+    video: { webm: string; mp4: string };
+    alt: Localized<string>;
+  };
 } = {
   name: 'Miguel García Bilbao',
   fullName: 'Miguel Alejandro García Bilbao',
@@ -43,4 +50,14 @@ export const profile: {
     en: "I'm looking for software engineering roles in applied AI or senior frontend. Email is the fastest way to reach me.",
   },
   cv: { es: '/cv/miguel-garcia-bilbao-es.pdf', en: '/cv/miguel-garcia-bilbao-en.pdf' },
+  portrait: {
+    image: '/img/retrato-constelacion.webp',
+    width: 1200,
+    height: 1200,
+    video: { webm: '/img/retrato-constelacion.webm', mp4: '/img/retrato-constelacion.mp4' },
+    alt: {
+      es: 'Retrato de Miguel García Bilbao dibujado con puntos de luz sobre un cielo con aurora',
+      en: 'Portrait of Miguel García Bilbao drawn in points of light against an aurora sky',
+    },
+  },
 };

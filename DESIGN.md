@@ -245,7 +245,10 @@ Formas suaves y orgánicas, como luz difusa. Lo interactivo pequeño es píldora
 Capa fija detrás de todo: degradado radial de noche, cuatro blobs desenfocados (70 px, opacidad 0.26, `mix-blend-mode: screen`) que derivan entre 28 y 46 s, estrellas en canvas 2D y grano al 5 %. Con "reducir movimiento" se queda quieta.
 
 ### Signature: Barrido de recuperación
-El único momento de movimiento con autoría: mientras el corpus "recupera fragmentos" (600 ms), una banda de luz menta → cian → violeta cruza el cerebro de izquierda a derecha (`mix-blend-mode: screen`, máscara elíptica para que no se vean bordes de caja, curva simétrica). Solo CSS (`:has()` sobre el estado del panel). Con "reducir movimiento" no aparece.
+El momento de movimiento con autoría de la demo: mientras el corpus "recupera fragmentos" (600 ms), una banda de luz menta → cian → violeta cruza el cerebro de izquierda a derecha (`mix-blend-mode: screen`, máscara elíptica para que no se vean bordes de caja, curva simétrica). Solo CSS (`:has()` sobre el estado del panel). Con "reducir movimiento" no aparece.
+
+### Signature: Retrato constelación (Contacto)
+La única foto de la web: Miguel dibujado con puntos de luz sobre su propio cielo con aurora. En reposo se ve la foto fija (WebP de 1200 px con `next/image` y alt). Cuando Contacto entra en pantalla, un vídeo silencioso de 10 s (WebM VP9 + MP4 H.264, 640 px, ~1 MB) dibuja la constelación encima una sola vez: aparece con desenfoque y opacidad (700 ms, ease-out) y en el último segundo se disuelve de vuelta en la foto. Si se pasa el ratón por encima o se toca, se repite. Los bordes se funden con la noche mediante una máscara radial `closest-side`, sin marco ni recorte de la silueta. El vídeo no se pide hasta que el retrato está en pantalla. Con "reducir movimiento" o con ahorro de datos, nunca se pide. Fuera de pantalla se pausa.
 
 ### Signature: Lente de observatorio (cursor)
 El cursor nativo se mantiene siempre. Detrás del contenido y encima de la aurora, un halo tenue (420 px, menta al 14 % → cian al 7 %, `mix-blend-mode: screen`) sigue al ratón sin retardo y aviva el cielo bajo el puntero; sobre enlaces y botones se recoge al 42 %, como una lente que enfoca. Solo con puntero fino y sin "reducir movimiento"; sin canvas.
@@ -270,4 +273,4 @@ El cursor nativo se mantiene siempre. Detrás del contenido y encima de la auror
 - **Don't** usar texto con degradado (`background-clip: text`) ni degradados de acento en botones; el énfasis viene del peso, el tamaño o un subrayado menta.
 
 ### Excepciones de marca en el detector
-La aurora del fondo (`radial-halo`) y el halo de color bajo el CTA principal (`dark-glow`) son la identidad del observatorio: están silenciados en `.impeccable/config.json`.
+La aurora del fondo (`radial-halo`) y el brillo de los puntos de categoría (`.node-mark::before`, que salta como `dark-glow`) son la identidad del observatorio: están silenciados en `.impeccable/config.json`. El CTA principal ya no lleva halo: su sombra tiene desplazamiento.

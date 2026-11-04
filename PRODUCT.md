@@ -41,7 +41,7 @@ Demostrar, no contar. La propia web es la prueba del perfil: un corpus con forma
 - Las escenas 3D reciben los datos por props, tienen fallback estático con el mismo layout y `aria-hidden` en el canvas. El texto nunca depende de WebGL.
 - Presupuesto de JS: < 175 KB gzip antes de las escenas y < 260 KB con el 3D completo. No se relaja sin el visto bueno de Miguel.
 - Objetivo Lighthouse móvil: Performance ≥ 90, SEO = 100, Accessibility ≥ 95, Best Practices ≥ 95; LCP < 2,5 s, CLS ≈ 0.
-- Fuera de alcance por ahora: RAG real con LLM, blog, CMS, formulario de contacto con backend, analítica de pago, foto.
+- Fuera de alcance por ahora: RAG real con LLM, blog, CMS, formulario de contacto con backend, analítica de pago.
 
 ## Brand Commitments
 
@@ -52,7 +52,8 @@ Demostrar, no contar. La propia web es la prueba del perfil: un corpus con forma
 
 - CVs y HTML de referencia en `docs/` (los originales con datos personales están fuera de git); CVs públicos sin teléfono en `public/cv/`.
 - Tres proyectos reales: RAG ESG (nettrim · Data Intelligence Hub), TFM de hipoglucemia y Web Components OEM.
-- No hay testimonios, clientes, foto ni cifras fuera de los CVs. **No se inventa nada**: ninguna cifra, tecnología o logro que no esté en `docs/`.
+- Retrato constelación de Miguel (foto fija y vídeo generados a partir de su foto de LinkedIn) en `public/img/`, solo en Contacto.
+- No hay testimonios, clientes ni cifras fuera de los CVs. **No se inventa nada**: ninguna cifra, tecnología o logro que no esté en `docs/`.
 - **Nunca se publica el teléfono.**
 
 ## Product Principles
