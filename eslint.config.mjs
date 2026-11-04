@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Herramientas locales (skill de Impeccable, scripts de superpowers)
+    ".claude/**",
+    ".superpowers/**",
   ]),
 ]);
 

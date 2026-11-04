@@ -1,0 +1,325 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-04T18:39:42.411445+00:00",
+  "title": "Design System: Miguel García Bilbao · Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "night": {
+        "role": "neutral",
+        "displayName": "Noche",
+        "tonalRamp": [
+          "oklch(15% 0.012 265)",
+          "oklch(25% 0.016 265)",
+          "oklch(35% 0.020 265)",
+          "oklch(48% 0.025 265)",
+          "oklch(60% 0.030 265)",
+          "oklch(72% 0.025 265)",
+          "oklch(84% 0.020 265)",
+          "oklch(95% 0.016 265)"
+        ]
+      },
+      "night-raised": {
+        "role": "neutral",
+        "displayName": "Noche elevada",
+        "tonalRamp": [
+          "oklch(15% 0.016 268)",
+          "oklch(25% 0.021 268)",
+          "oklch(35% 0.027 268)",
+          "oklch(48% 0.034 268)",
+          "oklch(60% 0.040 268)",
+          "oklch(72% 0.034 268)",
+          "oklch(84% 0.027 268)",
+          "oklch(95% 0.021 268)"
+        ]
+      },
+      "starlight": {
+        "role": "neutral",
+        "displayName": "Luz de estrella",
+        "tonalRamp": [
+          "oklch(15% 0.012 255)",
+          "oklch(25% 0.016 255)",
+          "oklch(35% 0.020 255)",
+          "oklch(48% 0.025 255)",
+          "oklch(60% 0.030 255)",
+          "oklch(72% 0.025 255)",
+          "oklch(84% 0.020 255)",
+          "oklch(95% 0.016 255)"
+        ]
+      },
+      "dusk-muted": {
+        "role": "neutral",
+        "displayName": "Crepúsculo",
+        "tonalRamp": [
+          "oklch(15% 0.020 255)",
+          "oklch(25% 0.027 255)",
+          "oklch(35% 0.033 255)",
+          "oklch(48% 0.042 255)",
+          "oklch(60% 0.050 255)",
+          "oklch(72% 0.042 255)",
+          "oklch(84% 0.034 255)",
+          "oklch(95% 0.027 255)"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Pelo de luz"
+      },
+      "aurora-mint": {
+        "role": "primary",
+        "displayName": "Menta aurora",
+        "tonalRamp": [
+          "oklch(15% 0.080 163)",
+          "oklch(25% 0.107 163)",
+          "oklch(35% 0.133 163)",
+          "oklch(48% 0.168 163)",
+          "oklch(60% 0.200 163)",
+          "oklch(72% 0.168 163)",
+          "oklch(84% 0.136 163)",
+          "oklch(95% 0.107 163)"
+        ]
+      },
+      "aurora-cyan": {
+        "role": "secondary",
+        "displayName": "Cian aurora",
+        "tonalRamp": [
+          "oklch(15% 0.064 230)",
+          "oklch(25% 0.085 230)",
+          "oklch(35% 0.107 230)",
+          "oklch(48% 0.134 230)",
+          "oklch(60% 0.160 230)",
+          "oklch(72% 0.134 230)",
+          "oklch(84% 0.109 230)",
+          "oklch(95% 0.085 230)"
+        ]
+      },
+      "aurora-violet": {
+        "role": "tertiary",
+        "displayName": "Violeta aurora",
+        "tonalRamp": [
+          "oklch(15% 0.088 293)",
+          "oklch(25% 0.117 293)",
+          "oklch(35% 0.147 293)",
+          "oklch(48% 0.185 293)",
+          "oklch(60% 0.220 293)",
+          "oklch(72% 0.185 293)",
+          "oklch(84% 0.150 293)",
+          "oklch(95% 0.117 293)"
+        ]
+      },
+      "on-aurora": {
+        "role": "neutral",
+        "displayName": "Tinta sobre aurora"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Nombre del Hero y titular de contacto."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Títulos de sección."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de tarjeta de proyecto."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Entradilla del Hero y del explorador."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrido, 52–62ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Chips, índices, prompts y etiquetas técnicas (mono)."
+      }
+    },
+    "shadows": [
+      {
+        "name": "cta-glow",
+        "value": "0 8px 30px -10px color-mix(in srgb, var(--color-mint) 70%, transparent)",
+        "purpose": "Halo bajo el botón principal."
+      },
+      {
+        "name": "cta-glow-hover",
+        "value": "0 10px 40px -8px color-mix(in srgb, var(--color-cyan) 80%, transparent)",
+        "purpose": "Halo del botón principal en hover."
+      },
+      {
+        "name": "node-glow",
+        "value": "0 0 12px 2px color-mix(in srgb, var(--node) 55%, transparent)",
+        "purpose": "Brillo de los puntos de nodo por categoría."
+      },
+      {
+        "name": "glass-header",
+        "value": "backdrop-filter: blur(14px) saturate(140%)",
+        "purpose": "Cristal del header fijo."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-soft",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Transiciones de botones, tarjetas y apariciones."
+      },
+      {
+        "name": "aurora-drift",
+        "value": "28–46s ease-in-out infinite alternate",
+        "purpose": "Deriva lenta de los blobs de la aurora; se detiene con reducir movimiento."
+      },
+      {
+        "name": "node-pulse",
+        "value": "2.6s ease-in-out infinite",
+        "purpose": "Pulso de los nodos de estado del Hero."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "stack",
+        "value": "720px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "grid",
+        "value": "900px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal: ver proyectos, descargar CV.",
+      "html": "<a class=\"ds-btn ds-btn-primary\" href=\"#\">Ver proyectos</a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 1.25rem;border-radius:999px;border:1px solid transparent;font-family:var(--font-sans, Archivo, system-ui, sans-serif);font-size:.95rem;font-weight:600;text-decoration:none;transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s,border-color .25s}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:2px solid var(--color-mint, #2ef5b0);outline-offset:3px}.ds-btn-primary{color:var(--color-on-accent, #04121a);background:linear-gradient(90deg,var(--color-mint, #2ef5b0),var(--color-cyan, #26c6ff));box-shadow:0 8px 30px -10px color-mix(in srgb,var(--color-mint, #2ef5b0) 70%,transparent)}.ds-btn-primary:hover{box-shadow:0 10px 40px -8px color-mix(in srgb,var(--color-cyan, #26c6ff) 80%,transparent)}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Acción secundaria: email, LinkedIn.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Escríbeme</a>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;min-height:46px;padding:0 1.25rem;border-radius:999px;color:var(--color-ink, #e8f1ff);border:1px solid color-mix(in srgb,var(--color-ink, #e8f1ff) 28%,transparent);background:color-mix(in srgb,var(--color-bg-2, #0b1020) 40%,transparent);font-family:var(--font-sans, Archivo, system-ui, sans-serif);font-size:.95rem;font-weight:600;text-decoration:none;transition:border-color .25s}.ds-btn-ghost:hover{border-color:var(--color-ink, #e8f1ff)}.ds-btn-ghost:focus-visible{outline:2px solid var(--color-mint, #2ef5b0);outline-offset:3px}"
+    },
+    {
+      "name": "Tech Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Tecnología o fuente, en mono.",
+      "html": "<span class=\"ds-chip\">LangChain</span>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;padding:.3rem .7rem;border-radius:999px;border:1px solid rgba(232,241,255,.12);background:color-mix(in srgb,var(--color-bg-2, #0b1020) 55%,transparent);font-family:var(--font-mono, 'JetBrains Mono', ui-monospace, monospace);font-size:.78rem;line-height:1.4;color:var(--color-ink, #e8f1ff)}"
+    },
+    {
+      "name": "Question Pill",
+      "kind": "chip",
+      "refersTo": "question-pill",
+      "description": "Pregunta seleccionable de 'Pregúntale a mi corpus'.",
+      "html": "<button class=\"ds-q\" role=\"radio\" aria-checked=\"false\">¿Qué hace con RAG?</button><button class=\"ds-q\" role=\"radio\" aria-checked=\"true\">¿Lidera equipos?</button>",
+      "css": ".ds-q{padding:9px 14px;margin:0 8px 8px 0;border-radius:999px;border:1px solid color-mix(in srgb,var(--color-mint, #2ef5b0) 32%,rgba(232,241,255,.12));background:color-mix(in srgb,var(--color-bg-2, #0b1020) 55%,transparent);color:var(--color-ink, #e8f1ff);font-family:var(--font-sans, Archivo, system-ui, sans-serif);font-size:.92rem;cursor:pointer;transition:border-color .2s}.ds-q:hover{border-color:var(--color-mint, #2ef5b0)}.ds-q:focus-visible{outline:2px solid var(--color-mint, #2ef5b0);outline-offset:3px}.ds-q[aria-checked=true]{background:linear-gradient(90deg,var(--color-mint, #2ef5b0),var(--color-cyan, #26c6ff));border-color:transparent;color:var(--color-on-accent, #04121a);font-weight:600}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "",
+      "description": "Header fijo de cristal.",
+      "html": "<header class=\"ds-nav\"><strong>MGB</strong><nav><a href=\"#\">Proyectos</a><a href=\"#\">Trayectoria</a><a href=\"#\">Contacto</a></nav></header>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 24px;background:color-mix(in srgb,var(--color-bg, #05070f) 62%,transparent);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid rgba(232,241,255,.12);color:var(--color-ink, #e8f1ff);font-family:var(--font-sans, Archivo, system-ui, sans-serif)}.ds-nav nav{display:flex;gap:24px}.ds-nav a{color:var(--color-muted, #8a9bb8);text-decoration:none;font-size:.95rem}.ds-nav a:hover{color:var(--color-ink, #e8f1ff)}.ds-nav a:focus-visible{outline:2px solid var(--color-mint, #2ef5b0);outline-offset:3px}"
+    },
+    {
+      "name": "Explorer Tab",
+      "kind": "custom",
+      "refersTo": "explorer-tab",
+      "description": "Pestaña vertical de capa o paso con índice mono.",
+      "html": "<button class=\"ds-tab\" aria-selected=\"false\"><span class=\"ds-tab-n\">1</span>Fuentes</button><button class=\"ds-tab\" aria-selected=\"true\"><span class=\"ds-tab-n\">2</span>Embeddings</button>",
+      "css": ".ds-tab{display:flex;align-items:center;gap:14px;width:100%;padding:12px 16px;border-radius:14px;border:1px solid transparent;background:none;color:var(--color-muted, #8a9bb8);font-family:var(--font-sans, Archivo, system-ui, sans-serif);font-size:1.05rem;font-weight:600;text-align:left;cursor:pointer;transition:color .2s,background-color .2s,border-color .2s}.ds-tab:hover{color:var(--color-ink, #e8f1ff)}.ds-tab:focus-visible{outline:2px solid var(--color-mint, #2ef5b0);outline-offset:3px}.ds-tab[aria-selected=true]{color:var(--color-ink, #e8f1ff);border-color:rgba(232,241,255,.12);background:color-mix(in srgb,var(--color-bg-2, #0b1020) 70%,transparent)}.ds-tab-n{display:grid;place-items:center;width:26px;height:26px;border-radius:8px;border:1px solid rgba(232,241,255,.12);font-family:var(--font-mono, 'JetBrains Mono', monospace);font-size:.75rem}.ds-tab[aria-selected=true] .ds-tab-n{background:var(--color-violet, #8b5cf6);border-color:var(--color-violet, #8b5cf6)}"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "project-card",
+      "description": "Tarjeta de proyecto de cristal con halo cian.",
+      "html": "<a class=\"ds-card\" href=\"#\"><div class=\"ds-card-art\"></div><div class=\"ds-card-body\"><p class=\"ds-card-org\">nettrim</p><h3 class=\"ds-card-title\">RAG ESG</h3><span class=\"ds-card-cta\">Ver proyecto →</span></div></a>",
+      "css": ".ds-card{display:flex;flex-direction:column;max-width:360px;border-radius:24px;border:1px solid rgba(232,241,255,.12);background:radial-gradient(70% 50% at 50% 0%,color-mix(in srgb,var(--color-cyan, #26c6ff) 12%,transparent),transparent 70%),color-mix(in srgb,var(--color-bg-2, #0b1020) 70%,transparent);color:var(--color-ink, #e8f1ff);text-decoration:none;overflow:hidden;transition:border-color .3s}.ds-card:hover,.ds-card:focus-visible{border-color:color-mix(in srgb,var(--color-mint, #2ef5b0) 45%,transparent)}.ds-card-art{aspect-ratio:16/10;border-bottom:1px solid rgba(232,241,255,.12)}.ds-card-body{display:flex;flex-direction:column;gap:10px;padding:22px 22px 24px;font-family:var(--font-sans, Archivo, system-ui, sans-serif)}.ds-card-org{margin:0;color:var(--color-muted, #8a9bb8);font-size:.85rem}.ds-card-title{margin:0;font-size:1.3125rem;font-weight:700;font-stretch:108%;letter-spacing:-.015em}.ds-card-cta{color:var(--color-mint, #2ef5b0);font-weight:600;font-size:.95rem}"
+    }
+  ],
+  "narrative": {
+    "northStar": "El observatorio nocturno",
+    "overview": "**Creative North Star: \"El observatorio nocturno\"**\n\nLa web es un cielo de noche sobre el que se observa el trabajo de Miguel. La aurora (degradados radiales desenfocados en menta, cian y violeta, a la deriva lenta), un campo de estrellas estático y un grano sutil son el ambiente: están siempre detrás, nunca delante del contenido. Lo que se observa son instrumentos: el corpus con forma de cerebro, el stack desplegado en isométrico y el bucle del pipeline RAG. Cada escena es una demostración del perfil, no un adorno.\n\nLa interfaz que rodea esos instrumentos es cristal luminoso: superficies translúcidas del azul noche elevado, bordes de un pelo de luz, esquinas muy redondeadas y brillo de acento reservado a lo interactivo. La tipografía hace el trabajo de jerarquía con Archivo ensanchado y apretado en los titulares y JetBrains Mono para todo lo que suena a máquina (etiquetas, chips, prompts). La densidad es baja: secciones con mucho aire vertical, una columna de lectura corta y un único escenario 3D por sección.\n\nTodo el contenido existe sin el cielo. Sin WebGL, con \"reducir movimiento\" o con puntero táctil, la aurora se queda quieta, el cursor de estrellas y el scroll suave desaparecen, y cada escena muestra un fallback estático con el mismo layout.",
+    "keyCharacteristics": [
+      "Fondo casi negro azulado con aurora fija detrás; nunca un fondo plano ni claro.",
+      "Tres acentos con significado: menta = frontend y CTA, cian = backend y cloud, violeta = IA.",
+      "Cristal translúcido + borde de 1 px como forma de elevación, en vez de sombras.",
+      "Titulares en Archivo con eje de anchura (108–120 %) y tracking negativo.",
+      "Mono para lo técnico; sans para lo humano.",
+      "El 3D es contenido demostrativo con fallback, nunca decoración."
+    ],
+    "rules": [
+      {
+        "name": "The Meaningful Light Rule",
+        "body": "Cada acento significa una categoría (frontend, backend, IA) y se reutiliza con el mismo significado en nodos, listas y escenas mediante `data-cat` / `--node`. Un acento no se usa como color decorativo arbitrario.",
+        "section": "colors"
+      },
+      {
+        "name": "The Token Source Rule",
+        "body": "Los colores viven solo en el `@theme` de `src/app/globals.css`. Fuera de ahí se permiten valores literales únicamente en shaders y en imágenes OG.",
+        "section": "colors"
+      },
+      {
+        "name": "The Stretch for Voice Rule",
+        "body": "La anchura crece con la jerarquía (100 % en texto, 108 % en títulos, 112 % en secciones, 118–120 % en display y métricas) y el tracking se aprieta en la misma proporción. El texto corrido nunca se ensancha.",
+        "section": "typography"
+      },
+      {
+        "name": "The Machine Speaks Mono Rule",
+        "body": "JetBrains Mono solo para lo que es técnico o generado: chips de tecnología, numeración de pasos, prompts y fuentes del corpus.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Stage Rule",
+        "body": "Como mucho un escenario 3D por sección, y solo se monta cuando la sección es visible.",
+        "section": "layout"
+      },
+      {
+        "name": "The Glow Not Shadow Rule",
+        "body": "Una superficie se eleva con translucidez y borde, no con `box-shadow` oscura. El halo de color se reserva a lo interactivo (CTA, nodos, fuentes del corpus).",
+        "section": "elevation"
+      },
+      {
+        "name": "The Bigger Is Softer Rule",
+        "body": "El radio crece con el tamaño del contenedor; nunca se mezclan esquinas rectas con esta familia.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** construir cada superficie nueva como cristal: noche elevada con transparencia, borde *pelo de luz* y el radio que le toque por tamaño.",
+      "**Do** reutilizar los acentos con su significado (menta frontend/CTA, cian backend, violeta IA) a través de `data-cat` y `--node`.",
+      "**Do** reservar el degradado menta→cian para la acción principal y el estado seleccionado.",
+      "**Do** dar a toda escena 3D un fallback estático con el mismo layout y `aria-hidden` en el canvas.",
+      "**Do** respetar `prefers-reduced-motion` y el puntero táctil en cualquier movimiento nuevo."
+    ],
+    "donts": [
+      "**Don't** poner fondos claros o planos; la aurora siempre se intuye detrás.",
+      "**Don't** usar sombras oscuras proyectadas para elevar superficies.",
+      "**Don't** introducir colores fuera del `@theme` de `globals.css` (salvo shaders e imágenes OG).",
+      "**Don't** usar la mono para texto corrido ni ensanchar Archivo en el cuerpo de texto.",
+      "**Don't** añadir efectos que no cuenten algo del trabajo de Miguel.",
+      "**Don't** marcar paneles con un borde lateral grueso de color (side-tab); la categoría se expresa con el punto de nodo o el índice relleno. (Decidido el 2026-11-04; el panel del explorador aún lo usa y está pendiente de sustituir.)",
+      "**Don't** usar texto con degradado (`background-clip: text`); el degradado menta→cian es para superficies de acción, no para letras. (Decidido el 2026-11-04; el email de contacto aún lo usa y está pendiente de sustituir.)"
+    ]
+  }
+}
