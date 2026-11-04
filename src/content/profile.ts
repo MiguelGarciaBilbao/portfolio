@@ -13,6 +13,8 @@ export const profile: {
   location: Localized<string>;
   status: Localized<string[]>;
   lookingFor: Localized<string>;
+  /** Versión corta de `lookingFor` para el Hero. */
+  seeking: Localized<string>;
   cv: Localized<string>;
   portrait: {
     image: string;
@@ -48,6 +50,10 @@ export const profile: {
   lookingFor: {
     es: 'Busco puestos de ingeniería de software con IA aplicada o de frontend senior. La forma más rápida de contactarme es por correo.',
     en: "I'm looking for software engineering roles in applied AI or senior frontend. Email is the fastest way to reach me.",
+  },
+  seeking: {
+    es: 'Busco puestos de IA aplicada o de frontend senior',
+    en: 'Looking for applied AI or senior frontend roles',
   },
   cv: { es: '/cv/miguel-garcia-bilbao-es.pdf', en: '/cv/miguel-garcia-bilbao-en.pdf' },
   portrait: {

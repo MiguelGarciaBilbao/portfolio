@@ -2,13 +2,23 @@
 
 import { useState } from 'react';
 
-export function CopyEmail({ email, label, done }: { email: string; label: string; done: string }) {
+export function CopyEmail({
+  email,
+  label,
+  done,
+  className = 'btn btn--ghost',
+}: {
+  email: string;
+  label: string;
+  done: string;
+  className?: string;
+}) {
   const [copied, setCopied] = useState(false);
   return (
     <>
       <button
         type="button"
-        className="btn btn--ghost"
+        className={className}
         onClick={async () => {
           try {
             await navigator.clipboard.writeText(email);

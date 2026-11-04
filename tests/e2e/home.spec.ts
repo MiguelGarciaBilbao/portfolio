@@ -1,5 +1,13 @@
 import { expect, test } from '@playwright/test';
 
+const SEEKING = {
+  es: {
+    text: /Busco puestos de IA aplicada o de frontend senior/,
+    where: 'Burgos, España · en remoto',
+  },
+  en: { text: /Looking for applied AI or senior frontend roles/, where: 'Burgos, Spain · remote' },
+} as const;
+
 const CTA = {
   es: { projects: 'Ver proyectos', cv: 'Descargar CV', email: 'Escribirme' },
   en: { projects: 'See projects', cv: 'Download CV', email: 'Email me' },
@@ -41,6 +49,39 @@ for (const locale of ['es', 'en'] as const) {
         }
       });
     }
+
+    // Lo que busca, dónde y la dirección de correo, a la vista en el primer viewport
+    for (const viewport of [
+      { width: 375, height: 667 },
+      { width: 360, height: 640 },
+      { width: 1280, height: 720 },
+    ]) {
+      test(`hero says what he looks for and shows the email at ${viewport.width}×${viewport.height}`, async ({
+        page,
+      }) => {
+        await page.setViewportSize(viewport);
+        await page.goto(`/${locale}`);
+        const hero = page.locator('#hero');
+        await expect(hero.getByText(SEEKING[locale].text)).toBeInViewport({ ratio: 1 });
+        await expect(hero.getByText(SEEKING[locale].where)).toBeInViewport({ ratio: 1 });
+        await expect(hero.getByText('miguel99bilbao@gmail.com', { exact: true })).toBeInViewport({
+          ratio: 1,
+        });
+        await expect(
+          hero.getByRole('button', { name: locale === 'es' ? 'Copiar email' : 'Copy email' }),
+        ).toBeInViewport({ ratio: 1 });
+      });
+    }
+
+    test('name fits in two lines on a 375 px phone', async ({ page }) => {
+      await page.setViewportSize({ width: 375, height: 667 });
+      await page.goto(`/${locale}`);
+      const lines = await page.locator('h1').evaluate((h) => {
+        const lh = parseFloat(getComputedStyle(h).lineHeight);
+        return Math.round(h.getBoundingClientRect().height / lh);
+      });
+      expect(lines).toBe(2);
+    });
 
     test('experience lists three roles and expands', async ({ page }) => {
       await page.goto(`/${locale}`);
@@ -95,6 +136,18 @@ test('copy email shows confirmation', async ({ page, context, browserName }) => 
   await page.goto('/es');
   await page.locator('#contact').getByRole('button', { name: 'Copiar email' }).click();
   await expect(page.locator('#contact').getByText('Email copiado')).toBeVisible();
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
+    'miguel99bilbao@gmail.com',
+  );
+});
+
+test('hero copy email button copies the address', async ({ page, context, browserName }) => {
+  test.skip(browserName !== 'chromium', 'clipboard permissions');
+  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+  await page.goto('/es');
+  const hero = page.locator('#hero');
+  await hero.getByRole('button', { name: 'Copiar email' }).click();
+  await expect(hero.getByText('Email copiado')).toBeVisible();
   expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
     'miguel99bilbao@gmail.com',
   );

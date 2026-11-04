@@ -343,7 +343,7 @@ main:focus {
 .aurora {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -2; /* bajo la lente del cursor (-1), que va antes en el DOM */
   overflow: hidden;
   pointer-events: none;
   background: radial-gradient(120% 80% at 50% -10%, #0a1330 0%, var(--color-bg) 55%);
@@ -430,24 +430,27 @@ main:focus {
   pointer-events: none;
   background: radial-gradient(
     closest-side,
-    color-mix(in srgb, var(--color-mint) 14%, transparent),
-    color-mix(in srgb, var(--color-cyan) 7%, transparent) 45%,
+    color-mix(in srgb, var(--color-mint) 24%, transparent),
+    color-mix(in srgb, var(--color-cyan) 11%, transparent) 42%,
+    color-mix(in srgb, var(--color-violet) 4%, transparent) 70%,
     transparent
   );
   mix-blend-mode: screen;
   opacity: 0;
-  will-change: transform;
+  will-change: translate, scale;
   transition:
     opacity 0.5s var(--ease-out-soft),
-    scale 0.4s var(--ease-out-soft);
+    scale 0.4s var(--ease-out-soft),
+    filter 0.4s var(--ease-out-soft);
 }
 .lens[data-on='true'] {
   opacity: 1;
 }
-/* sobre lo clicable la lente se recoge: enfoca */
+/* sobre lo clicable la lente se recoge y se aviva: enfoca. A 0,7 (~290 px) desborda el botón,
+   así que el halo se ve alrededor en vez de quedar tapado detrás. */
 .lens[data-on='true'][data-focus='true'] {
-  scale: 0.42;
-  opacity: 0.8;
+  scale: 0.7;
+  filter: brightness(1.9) saturate(1.15);
 }
 
 /* ───────────── Reveal ───────────── */
@@ -569,6 +572,43 @@ main:focus {
   gap: 12px;
   margin-top: 34px;
 }
+/* Qué busca, desde dónde y la dirección: el contexto del CTA de email, a la vista y copiable */
+.hero__reach {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+}
+.hero__seeking {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--color-muted);
+}
+.hero__where {
+  display: block;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+.hero__address {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin: 0;
+}
+.hero__email {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-mint) 55%, transparent);
+  text-underline-offset: 5px;
+  transition: text-decoration-color 0.2s;
+}
+.hero__email:hover {
+  text-decoration-color: var(--color-mint);
+}
 /* Escritorio bajo (portátiles de 720–780 px): se oculta el cuerpo para proteger los CTA */
 @media (min-width: 641px) and (max-height: 780px) {
   .hero {
@@ -586,6 +626,10 @@ main:focus {
   .hero__actions {
     margin-top: 26px;
   }
+  .hero__reach {
+    margin-top: 18px;
+    gap: 8px;
+  }
 }
 /* Móvil: nombre, rol, entradilla y los tres CTA tienen que caber sin scroll (desde 320×568).
    El estado pasa debajo de los CTA y la entradilla baja a cuerpo de texto. */
@@ -599,8 +643,9 @@ main:focus {
     margin: 24px 0 0;
     gap: 8px 18px;
   }
+  /* "García Bilbao" en una sola línea desde 320 px: el nombre ocupa siempre dos */
   .hero__title {
-    font-size: clamp(2.5rem, 12.5vw, 2.9rem);
+    font-size: clamp(2.2rem, 11.2vw, 2.9rem);
   }
   .hero__role {
     margin-top: 16px;
@@ -626,6 +671,18 @@ main:focus {
   }
   .hero__actions .btn {
     padding-inline: 0.75rem;
+  }
+  .hero__reach {
+    margin-top: 18px;
+  }
+  .hero__seeking {
+    font-size: 0.875rem;
+  }
+  .hero__email {
+    font-size: 0.85rem;
+  }
+  .hero__address .btn--sm {
+    min-height: 44px;
   }
 }
 @media (max-width: 640px) and (max-height: 700px) {

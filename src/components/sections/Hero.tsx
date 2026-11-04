@@ -1,9 +1,11 @@
 import { getTranslations } from 'next-intl/server';
 import { profile } from '@/content/profile';
 import type { Locale } from '@/content/types';
+import { CopyEmail } from '@/components/ui/CopyEmail';
 
 export async function Hero({ locale }: { locale: Locale }) {
   const t = await getTranslations('hero');
+  const tc = await getTranslations('contact');
   const [first, ...rest] = profile.name.split(' ');
 
   return (
@@ -32,6 +34,23 @@ export async function Hero({ locale }: { locale: Locale }) {
         <a href={`mailto:${profile.email}`} className="btn btn--ghost">
           {t('ctaEmail')}
         </a>
+      </div>
+      <div className="hero__reach">
+        <p className="hero__seeking">
+          <span>{profile.seeking[locale]}</span>{' '}
+          <span className="hero__where">{profile.location[locale]}</span>
+        </p>
+        <p className="hero__address">
+          <a href={`mailto:${profile.email}`} className="hero__email">
+            {profile.email}
+          </a>
+          <CopyEmail
+            email={profile.email}
+            label={tc('copy')}
+            done={tc('copied')}
+            className="btn btn--ghost btn--sm"
+          />
+        </p>
       </div>
     </section>
   );

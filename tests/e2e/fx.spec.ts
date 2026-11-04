@@ -34,8 +34,27 @@ test('lens gathers over interactive elements', async ({ page, isMobile }) => {
     await page.mouse.move((x += 7), 300);
     await expect(lens).toHaveAttribute('data-on', 'true', { timeout: 500 });
   }).toPass();
-  await page.locator('#hero .btn--primary').hover();
+  const btn = page.locator('#hero .btn--primary');
+  await btn.hover();
   await expect(lens).toHaveAttribute('data-focus', 'true');
+  // al recogerse sigue centrada en el puntero (la escala no puede arrastrar la posición)
+  const b = (await btn.boundingBox())!;
+  await expect(async () => {
+    const l = (await lens.boundingBox())!;
+    expect(Math.abs(l.x + l.width / 2 - (b.x + b.width / 2))).toBeLessThan(4);
+    expect(Math.abs(l.y + l.height / 2 - (b.y + b.height / 2))).toBeLessThan(4);
+  }).toPass();
+});
+
+// la aurora es opaca: si pintase encima, la lente no se vería
+test('lens paints above the aurora', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'desktop only');
+  await page.goto('/es');
+  const z = await page.evaluate(() => [
+    Number(getComputedStyle(document.querySelector('.aurora')!).zIndex),
+    Number(getComputedStyle(document.querySelector('.lens')!).zIndex),
+  ]);
+  expect(z[1]).toBeGreaterThan(z[0]);
 });
 
 test('no lens on touch', async ({ page, isMobile }) => {

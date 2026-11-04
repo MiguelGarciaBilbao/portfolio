@@ -24,7 +24,8 @@ export function LensCursor() {
 
     const paint = () => {
       raf = 0;
-      lens.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      // `translate` y no `transform`: así la escala del enfoque no arrastra la posición hacia (0, 0)
+      lens.style.translate = `${x}px ${y}px`;
     };
     const onMove = (e: PointerEvent) => {
       if (e.pointerType !== 'mouse') return;
