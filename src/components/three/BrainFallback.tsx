@@ -1,12 +1,7 @@
 import { BRAIN_SEED, generateBrain, type BrainInputNode } from '@/lib/brain-geometry';
-import type { Category } from '@/content/types';
+import { CATEGORY_COLOR } from './colors';
 
-const COLOR: Record<Category, string> = {
-  frontend: '#2EF5B0',
-  backend: '#26C6FF',
-  ai: '#8B5CF6',
-  product: '#E8F1FF',
-};
+const COLOR = CATEGORY_COLOR;
 
 // Misma geometría que la escena 3D (misma semilla), proyectada en ortográfica sobre (x, y).
 const cache = new Map<string, ReturnType<typeof generateBrain>>();
@@ -40,7 +35,7 @@ export function BrainFallback({
         cx={x.toFixed(3)}
         cy={y.toFixed(3)}
         r={0.011}
-        fill={x < 0 ? '#2EF5B0' : '#26C6FF'}
+        fill={x < 0 ? '#3FD8A0' : '#4FB3E8'}
         opacity={(0.25 + 0.45 * ((z + 1) / 2)).toFixed(2)}
       />,
     );
@@ -58,7 +53,7 @@ export function BrainFallback({
         </filter>
       </defs>
       <g>{dots}</g>
-      <g stroke="#26C6FF" strokeOpacity={0.22} strokeWidth={0.006}>
+      <g stroke="#4FB3E8" strokeOpacity={0.22} strokeWidth={0.006}>
         {g.edges.map(([i, j]) => (
           <line
             key={`${i}-${j}`}

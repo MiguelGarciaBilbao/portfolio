@@ -65,4 +65,4 @@ Demostrar, no contar. La propia web es la prueba del perfil: un corpus con forma
 
 ## Accessibility & Inclusion
 
-Respetar `prefers-reduced-motion` y los punteros táctiles (sin cursor de estrellas ni scroll suave). Todo el contenido legible sin WebGL. Auditoría con axe en los e2e.
+Respetar `prefers-reduced-motion` y los punteros táctiles (sin lente del cursor ni scroll suave). Todo el contenido legible sin WebGL. Auditoría con axe en los e2e.

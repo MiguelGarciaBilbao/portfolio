@@ -7,7 +7,7 @@ import * as THREE from 'three';
 import { useSceneQuality } from './quality';
 import { useFitZoom } from './IsoStack';
 
-const COLORS = ['#26C6FF', '#2EF5B0', '#2EF5B0', '#26C6FF', '#8B5CF6', '#8B5CF6'];
+const COLORS = ['#4FB3E8', '#3FD8A0', '#3FD8A0', '#4FB3E8', '#9A87F2', '#9A87F2'];
 const RX = 2.1;
 const RZ = 2.1;
 
@@ -50,7 +50,7 @@ function Block({
         >
           <meshStandardMaterial
             ref={mat}
-            color="#0b1020"
+            color="#0c1220"
             emissive={color}
             emissiveIntensity={active ? 1 : 0.3}
             roughness={0.35}
@@ -106,8 +106,8 @@ export default function RagPipeline({
   const offsets = useMemo(() => Array.from({ length: count }, (_, i) => i / count), [count]);
   const loopStart = (steps.length - 1) / steps.length; // tramo informes → corpus
   const tmp = useMemo(() => new THREE.Vector3(), []);
-  const colorA = useMemo(() => new THREE.Color('#26C6FF'), []);
-  const colorB = useMemo(() => new THREE.Color('#8B5CF6'), []);
+  const colorA = useMemo(() => new THREE.Color('#4FB3E8'), []);
+  const colorB = useMemo(() => new THREE.Color('#9A87F2'), []);
 
   useFrame((state) => {
     const mesh = particles.current;
@@ -132,7 +132,7 @@ export default function RagPipeline({
       <directionalLight position={[4, 8, 3]} intensity={1.2} />
       <line>
         <primitive object={curveGeo} attach="geometry" />
-        <lineBasicMaterial color="#26C6FF" transparent opacity={0.35} />
+        <lineBasicMaterial color="#4FB3E8" transparent opacity={0.35} />
       </line>
       <instancedMesh ref={particles} args={[undefined, undefined, count]}>
         <sphereGeometry args={[0.035, 8, 8]} />

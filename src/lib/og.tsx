@@ -10,19 +10,19 @@ import { corpusNodes } from '@/content/corpus';
 export const OG_SIZE = { width: 1200, height: 630 };
 
 const BG = '#05070f';
-const INK = '#E8F1FF';
-const MUTED = '#8A9BB8';
+const INK = '#E8EEF7';
+const MUTED = '#8D9AB0';
 const CAT: Record<string, string> = {
-  frontend: '#2EF5B0',
-  backend: '#26C6FF',
-  ai: '#8B5CF6',
-  product: '#E8F1FF',
+  frontend: '#3FD8A0',
+  backend: '#4FB3E8',
+  ai: '#9A87F2',
+  product: '#E8EEF7',
 };
 
 const AURORA = [
-  'radial-gradient(circle at 12% 0%, rgba(46,245,176,0.34) 0%, rgba(46,245,176,0) 55%)',
-  'radial-gradient(circle at 88% 10%, rgba(139,92,246,0.36) 0%, rgba(139,92,246,0) 55%)',
-  'radial-gradient(circle at 60% 110%, rgba(38,198,255,0.26) 0%, rgba(38,198,255,0) 60%)',
+  'radial-gradient(circle at 12% 0%, rgba(63,216,160,0.34) 0%, rgba(63,216,160,0) 55%)',
+  'radial-gradient(circle at 88% 10%, rgba(154,135,242,0.36) 0%, rgba(154,135,242,0) 55%)',
+  'radial-gradient(circle at 60% 110%, rgba(79,179,232,0.26) 0%, rgba(79,179,232,0) 60%)',
 ];
 
 function brainSvg() {
@@ -47,7 +47,7 @@ function brainSvg() {
         cx={p.x.toFixed(1)}
         cy={p.y.toFixed(1)}
         r="1.7"
-        fill={x < 0 ? '#2EF5B0' : '#26C6FF'}
+        fill={x < 0 ? '#3FD8A0' : '#4FB3E8'}
         fillOpacity={o.toFixed(2)}
       />,
     );
@@ -62,7 +62,7 @@ function brainSvg() {
         y1={a.y}
         x2={b.x}
         y2={b.y}
-        stroke="#26C6FF"
+        stroke="#4FB3E8"
         strokeOpacity="0.25"
         strokeWidth="1"
       />
@@ -130,7 +130,7 @@ export function renderOg({
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, fontSize: 26, color: MUTED }}>
-          <div style={{ width: 12, height: 12, borderRadius: 999, background: '#2EF5B0' }} />
+          <div style={{ width: 12, height: 12, borderRadius: 999, background: '#3FD8A0' }} />
           {eyebrow}
         </div>
         <div

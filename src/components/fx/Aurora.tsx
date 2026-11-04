@@ -25,7 +25,7 @@ export function Aurora() {
       <div className="aurora__blob aurora__blob--4" />
       <svg className="aurora__stars" preserveAspectRatio="none">
         {STARS.map((s, i) => (
-          <circle key={i} cx={`${s.x}%`} cy={`${s.y}%`} r={s.r} fill="#E8F1FF" opacity={s.o} />
+          <circle key={i} cx={`${s.x}%`} cy={`${s.y}%`} r={s.r} fill="#E8EEF7" opacity={s.o} />
         ))}
       </svg>
       <svg className="aurora__grain">

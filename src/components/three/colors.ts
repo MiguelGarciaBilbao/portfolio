@@ -1,8 +1,8 @@
 import type { Category } from '@/content/types';
 
 export const CATEGORY_COLOR: Record<Category, string> = {
-  frontend: '#2EF5B0',
-  backend: '#26C6FF',
-  ai: '#8B5CF6',
-  product: '#E8F1FF',
+  frontend: '#3FD8A0',
+  backend: '#4FB3E8',
+  ai: '#9A87F2',
+  product: '#E8EEF7',
 };

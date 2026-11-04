@@ -39,7 +39,7 @@ function Box({
 
 function RagArt() {
   // Seis bloques del pipeline en anillo; el último vuelve al corpus.
-  const colors = ['#26C6FF', '#2EF5B0', '#2EF5B0', '#26C6FF', '#8B5CF6', '#8B5CF6'];
+  const colors = ['#4FB3E8', '#3FD8A0', '#3FD8A0', '#4FB3E8', '#9A87F2', '#9A87F2'];
   const ring = Array.from({ length: 6 }, (_, i) => {
     const a = (i / 6) * Math.PI * 2 - Math.PI / 2;
     return { x: Math.cos(a) * 62, y: Math.sin(a) * 62 };
@@ -55,7 +55,7 @@ function RagArt() {
       <path
         d={`${path} Z`}
         fill="none"
-        stroke="#8B5CF6"
+        stroke="#9A87F2"
         strokeDasharray="4 5"
         strokeOpacity={0.8}
       />
@@ -73,23 +73,23 @@ function TimeseriesArt({ thresholdLabel }: { thresholdLabel: string }) {
   const d = ys.map((v, i) => `${i === 0 ? 'M' : 'L'}${24 + i * 18},${toY(v)}`).join(' ');
   return (
     <g>
-      <line x1={20} x2={300} y1={toY(70)} y2={toY(70)} stroke="#8B5CF6" strokeDasharray="5 5" />
-      <text x={24} y={toY(70) + 18} fill="#8A9BB8" fontSize={11}>
+      <line x1={20} x2={300} y1={toY(70)} y2={toY(70)} stroke="#9A87F2" strokeDasharray="5 5" />
+      <text x={24} y={toY(70) + 18} fill="#8D9AB0" fontSize={11}>
         {thresholdLabel}
       </text>
       <path d={d} fill="none" stroke="url(#ts-grad)" strokeWidth={3} strokeLinecap="round" />
       <path
         d={`M${24 + 11 * 18},${toY(88)} L${24 + 15 * 18},${toY(58)}`}
-        stroke="#2EF5B0"
+        stroke="#3FD8A0"
         strokeWidth={2}
         strokeDasharray="2 6"
         strokeLinecap="round"
       />
-      <circle cx={24 + 12 * 18} cy={toY(70)} r={6} fill="#8B5CF6" />
+      <circle cx={24 + 12 * 18} cy={toY(70)} r={6} fill="#9A87F2" />
       <defs>
         <linearGradient id="ts-grad" x1="0" x2="1">
-          <stop offset="0" stopColor="#26C6FF" />
-          <stop offset="1" stopColor="#2EF5B0" />
+          <stop offset="0" stopColor="#4FB3E8" />
+          <stop offset="1" stopColor="#3FD8A0" />
         </linearGradient>
       </defs>
     </g>
@@ -100,9 +100,9 @@ function OemArt() {
   // Pieza en tres partes que se separan al pasar el ratón (CSS: .project-card:hover .oem-*).
   return (
     <g transform="translate(160 150)">
-      <Box className="oem-base" x={-40} y={-40} z={0} w={80} d={80} h={18} color="#26C6FF" />
-      <Box className="oem-mid" x={-28} y={-28} z={18} w={56} d={56} h={16} color="#2EF5B0" />
-      <Box className="oem-top" x={-14} y={-14} z={34} w={28} d={28} h={22} color="#8B5CF6" />
+      <Box className="oem-base" x={-40} y={-40} z={0} w={80} d={80} h={18} color="#4FB3E8" />
+      <Box className="oem-mid" x={-28} y={-28} z={18} w={56} d={56} h={16} color="#3FD8A0" />
+      <Box className="oem-top" x={-14} y={-14} z={34} w={28} d={28} h={22} color="#9A87F2" />
     </g>
   );
 }

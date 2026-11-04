@@ -70,7 +70,7 @@ function Slab({
       >
         <meshStandardMaterial
           ref={mat}
-          color="#0b1020"
+          color="#0c1220"
           emissive={color}
           emissiveIntensity={selected ? 0.9 : 0.28}
           metalness={0.2}

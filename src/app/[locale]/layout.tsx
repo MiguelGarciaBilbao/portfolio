@@ -9,7 +9,7 @@ import { siteUrl } from '@/lib/site';
 import { Header } from '@/components/ui/Header';
 import { SkipLink } from '@/components/ui/SkipLink';
 import { Aurora } from '@/components/fx/Aurora';
-import { StarCursor } from '@/components/fx/StarCursor';
+import { LensCursor } from '@/components/fx/LensCursor';
 import { SmoothScroll } from '@/components/fx/SmoothScroll';
 
 const archivo = Archivo({
@@ -54,7 +54,7 @@ export default async function LocaleLayout({
           <SkipLink />
           <Header locale={locale} />
           {children}
-          <StarCursor />
+          <LensCursor />
           <SmoothScroll />
         </NextIntlClientProvider>
       </body>

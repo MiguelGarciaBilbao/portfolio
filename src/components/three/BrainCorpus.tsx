@@ -266,7 +266,7 @@ export default function BrainCorpus({
       activePoints.map((p) => new THREE.Vector3(...p)),
     );
     const mat = new THREE.LineBasicMaterial({
-      color: '#2EF5B0',
+      color: '#3FD8A0',
       transparent: true,
       opacity: 0.85,
       toneMapped: false,

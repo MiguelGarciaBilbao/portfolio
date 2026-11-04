@@ -1,12 +1,8 @@
 import type { Category } from '@/content/types';
+import { CATEGORY_COLOR } from './colors';
 import { isoBox, iso } from '@/lib/iso';
 
-const COLOR: Record<Category, string> = {
-  frontend: '#2EF5B0',
-  backend: '#26C6FF',
-  ai: '#8B5CF6',
-  product: '#E8F1FF',
-};
+const COLOR = CATEGORY_COLOR;
 
 export interface IsoLayer {
   id: string;
@@ -52,7 +48,7 @@ export function IsoStackFallback({
               strokeWidth={on ? 1.6 : 1}
             />
             <line x1={lx} y1={ly} x2={lx + 26} y2={ly} stroke={c} strokeOpacity={0.6} />
-            <text x={lx + 32} y={ly + 4} fill="#E8F1FF" fontSize={12} fontFamily="var(--font-mono)">
+            <text x={lx + 32} y={ly + 4} fill="#E8EEF7" fontSize={12} fontFamily="var(--font-mono)">
               {l.label}
             </text>
           </g>

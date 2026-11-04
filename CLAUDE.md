@@ -30,7 +30,7 @@ src/proxy.ts                 Next 16: sustituye a middleware.ts (next-intl)
 src/content/                 ÚNICA fuente de verdad del contenido (Localized<T>)
 src/components/sections/     Server Components de cada sección
 src/components/three/        escenas R3F (solo cliente, carga diferida + fallback)
-src/components/fx/           Aurora, StarCursor, SmoothScroll, Reveal, CountUp
+src/components/fx/           Aurora, LensCursor, SmoothScroll, Reveal, CountUp
 src/lib/                     seo, motion (tiers GPU), brain-geometry, ask-reducer
 messages/{es,en}.json        solo microcopy de UI
 ```
@@ -43,5 +43,5 @@ messages/{es,en}.json        solo microcopy de UI
 4. **Las escenas 3D (`src/components/three/`) no importan `next-intl` ni `@/content`**: los datos llegan solo por props.
 5. **Toda escena tiene fallback** estático con el mismo layout. Los canvas llevan `aria-hidden="true"`. El texto nunca depende de WebGL.
 6. **Presupuesto de JS:** < 175 KB gzip antes de cargar escenas; 3D completo < 260 KB gzip (`tests/e2e/budget.spec.ts`). Re-basados con Miguel el 2026-11-03 sobre lo medido (Next 16 + React ≈ 136 KB por sí solos). No relajarlos más sin su visto bueno.
-7. Respetar `prefers-reduced-motion` y el puntero táctil (sin cursor de estrellas ni Lenis).
+7. Respetar `prefers-reduced-motion` y el puntero táctil (sin lente del cursor ni Lenis).
 8. Tokens de color en `src/app/globals.css` (`@theme`). No hardcodear colores fuera de ahí salvo en shaders y en imágenes OG.

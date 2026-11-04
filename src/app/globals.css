@@ -3,13 +3,13 @@
 /* ───────────── Tokens (spec §4.1) ───────────── */
 @theme {
   --color-bg: #05070f;
-  --color-bg-2: #0b1020;
-  --color-ink: #e8f1ff;
-  --color-muted: #8a9bb8;
-  --color-line: rgba(232, 241, 255, 0.12);
-  --color-mint: #2ef5b0;
-  --color-cyan: #26c6ff;
-  --color-violet: #8b5cf6;
+  --color-bg-2: #0c1220;
+  --color-ink: #e8eef7;
+  --color-muted: #8d9ab0;
+  --color-line: rgba(232, 238, 247, 0.12);
+  --color-mint: #3fd8a0;
+  --color-cyan: #4fb3e8;
+  --color-violet: #9a87f2;
   --color-on-accent: #04121a;
 
   --font-sans: var(--font-archivo), system-ui, sans-serif;
@@ -77,15 +77,6 @@ main:focus {
   outline: none;
 }
 
-/* Cursor personalizado: el nativo solo se oculta si StarCursor está activo */
-html.has-star-cursor,
-html.has-star-cursor * {
-  cursor: none;
-}
-html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
-  cursor: auto;
-}
-
 /* ───────────── Tipografía ───────────── */
 .display {
   font-stretch: 118%;
@@ -139,7 +130,7 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
   height: 8px;
   border-radius: 999px;
   background: var(--node, var(--color-mint));
-  box-shadow: 0 0 12px 2px color-mix(in srgb, var(--node, var(--color-mint)) 55%, transparent);
+  box-shadow: 0 0 8px 1px color-mix(in srgb, var(--node, var(--color-mint)) 40%, transparent);
 }
 [data-cat='frontend'] {
   --node: var(--cat-frontend);
@@ -194,11 +185,12 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
 }
 .btn--primary {
   color: var(--color-on-accent);
-  background: linear-gradient(90deg, var(--color-mint), var(--color-cyan));
-  box-shadow: 0 8px 30px -10px color-mix(in srgb, var(--color-mint) 70%, transparent);
+  background: var(--color-mint);
+  box-shadow: 0 6px 18px -10px color-mix(in srgb, var(--color-mint) 60%, transparent);
 }
 .btn--primary:hover {
-  box-shadow: 0 10px 40px -8px color-mix(in srgb, var(--color-cyan) 80%, transparent);
+  background: color-mix(in srgb, var(--color-mint) 86%, var(--color-ink));
+  box-shadow: 0 8px 22px -10px color-mix(in srgb, var(--color-mint) 70%, transparent);
 }
 .btn--ghost {
   color: var(--color-ink);
@@ -360,7 +352,7 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
   position: absolute;
   border-radius: 50%;
   filter: blur(70px);
-  opacity: 0.42;
+  opacity: 0.26;
   mix-blend-mode: screen;
   will-change: transform;
 }
@@ -393,7 +385,7 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
   height: 26vw;
   left: 10vw;
   bottom: -18vw;
-  opacity: 0.18;
+  opacity: 0.12;
   background: radial-gradient(closest-side, var(--color-violet), transparent);
   animation: aurora-2 46s ease-in-out infinite alternate-reverse;
 }
@@ -424,46 +416,38 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
   }
 }
 
-/* ───────────── StarCursor ───────────── */
-.star-cursor__canvas {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  pointer-events: none;
-}
-.star-cursor__dot,
-.star-cursor__ring {
+/* ───────────── Lente de observatorio (cursor) ─────────────
+   Detrás del contenido y encima de la aurora: aviva el cielo bajo el ratón sin tapar nada. */
+.lens {
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 91;
+  z-index: -1;
+  width: 420px;
+  height: 420px;
+  margin: -210px 0 0 -210px;
+  border-radius: 50%;
   pointer-events: none;
-  border-radius: 999px;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--color-mint) 14%, transparent),
+    color-mix(in srgb, var(--color-cyan) 7%, transparent) 45%,
+    transparent
+  );
+  mix-blend-mode: screen;
+  opacity: 0;
   will-change: transform;
-}
-.star-cursor__dot {
-  width: 6px;
-  height: 6px;
-  margin: -3px 0 0 -3px;
-  background: var(--color-ink);
-  box-shadow: 0 0 10px 2px color-mix(in srgb, var(--color-mint) 60%, transparent);
-}
-.star-cursor__ring {
-  width: 28px;
-  height: 28px;
-  margin: -14px 0 0 -14px;
-  border: 1px solid color-mix(in srgb, var(--color-cyan) 70%, transparent);
   transition:
-    width 0.25s var(--ease-out-soft),
-    height 0.25s var(--ease-out-soft),
-    margin 0.25s var(--ease-out-soft),
-    border-color 0.25s;
+    opacity 0.5s var(--ease-out-soft),
+    scale 0.4s var(--ease-out-soft);
 }
-.star-cursor__ring[data-hover='true'] {
-  width: 45px;
-  height: 45px;
-  margin: -22.5px 0 0 -22.5px;
-  border-color: var(--color-mint);
+.lens[data-on='true'] {
+  opacity: 1;
+}
+/* sobre lo clicable la lente se recoge: enfoca */
+.lens[data-on='true'][data-focus='true'] {
+  scale: 0.42;
+  opacity: 0.8;
 }
 
 /* ───────────── Reveal ───────────── */
@@ -657,7 +641,7 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
 }
 @keyframes node-pulse {
   50% {
-    box-shadow: 0 0 18px 5px color-mix(in srgb, var(--node, var(--color-mint)) 70%, transparent);
+    box-shadow: 0 0 12px 3px color-mix(in srgb, var(--node, var(--color-mint)) 55%, transparent);
   }
 }
 
@@ -894,17 +878,16 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
   font-weight: 650;
   font-stretch: 112%;
   letter-spacing: -0.02em;
-  text-decoration: none;
-  background: linear-gradient(90deg, var(--color-mint), var(--color-cyan));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-mint) 55%, transparent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 8px;
   overflow-wrap: anywhere;
+  transition: text-decoration-color 0.2s;
 }
 .contact__email:hover {
-  text-decoration: underline;
-  text-decoration-color: var(--color-cyan);
-  text-underline-offset: 6px;
+  text-decoration-color: var(--color-mint);
 }
 .contact__actions {
   display: flex;
@@ -1056,13 +1039,13 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
 .step-list__tab[aria-selected='true'] .step-list__n {
   background: var(--color-violet);
   border-color: var(--color-violet);
-  color: var(--color-ink);
+  color: var(--color-on-accent);
 }
 .explorer__panel {
   padding: 24px;
   border-radius: 20px;
   border: 1px solid var(--color-line);
-  border-left: 3px solid var(--node, var(--color-mint));
+  border-top-color: color-mix(in srgb, var(--node, var(--color-mint)) 55%, var(--color-line));
   background: color-mix(in srgb, var(--color-bg-2) 60%, transparent);
 }
 .explorer__what {
@@ -1290,7 +1273,7 @@ html.has-star-cursor :is(input, textarea, select, [contenteditable='true']) {
   }
 }
 .ask__q[aria-checked='true'] {
-  background: linear-gradient(90deg, var(--color-mint), var(--color-cyan));
+  background: var(--color-mint);
   border-color: transparent;
   color: var(--color-on-accent);
   font-weight: 600;

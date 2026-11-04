@@ -3,13 +3,13 @@ name: Miguel García Bilbao · Portfolio
 description: Portfolio bilingüe bajo una aurora boreal: el trabajo de Miguel se observa como instrumentos en un cielo nocturno.
 colors:
   night: "#05070f"
-  night-raised: "#0b1020"
-  starlight: "#e8f1ff"
-  dusk-muted: "#8a9bb8"
-  hairline: "rgba(232, 241, 255, 0.12)"
-  aurora-mint: "#2ef5b0"
-  aurora-cyan: "#26c6ff"
-  aurora-violet: "#8b5cf6"
+  night-raised: "#0c1220"
+  starlight: "#e8eef7"
+  dusk-muted: "#8d9ab0"
+  hairline: "rgba(232, 238, 247, 0.12)"
+  aurora-mint: "#3fd8a0"
+  aurora-cyan: "#4fb3e8"
+  aurora-violet: "#9a87f2"
   on-aurora: "#04121a"
 typography:
   display:
@@ -126,25 +126,26 @@ La web es un cielo de noche sobre el que se observa el trabajo de Miguel. La aur
 
 La interfaz que rodea esos instrumentos es cristal luminoso: superficies translúcidas del azul noche elevado, bordes de un pelo de luz, esquinas muy redondeadas y brillo de acento reservado a lo interactivo. La tipografía hace el trabajo de jerarquía con Archivo ensanchado y apretado en los titulares y JetBrains Mono para todo lo que suena a máquina (etiquetas, chips, prompts). La densidad es baja: secciones con mucho aire vertical, una columna de lectura corta y un único escenario 3D por sección.
 
-Todo el contenido existe sin el cielo. Sin WebGL, con "reducir movimiento" o con puntero táctil, la aurora se queda quieta, el cursor de estrellas y el scroll suave desaparecen, y cada escena muestra un fallback estático con el mismo layout.
+Todo el contenido existe sin el cielo. Sin WebGL, con "reducir movimiento" o con puntero táctil, la aurora se queda quieta, la lente del cursor y el scroll suave desaparecen, y cada escena muestra un fallback estático con el mismo layout.
 
 **Key Characteristics:**
 - Fondo casi negro azulado con aurora fija detrás; nunca un fondo plano ni claro.
 - Tres acentos con significado: menta = frontend y CTA, cian = backend y cloud, violeta = IA.
 - Cristal translúcido + borde de 1 px como forma de elevación, en vez de sombras.
+- Acentos sobrios y sólidos: sin degradados de acento ni neón.
 - Titulares en Archivo con eje de anchura (108–120 %) y tracking negativo.
 - Mono para lo técnico; sans para lo humano.
 - El 3D es contenido demostrativo con fallback, nunca decoración.
 
 ## Colors
 
-Una noche azul profunda con tres luces de aurora que codifican el tipo de trabajo.
+Una noche azul profunda con tres luces de aurora sobrias (poca saturación, nada de neón) que codifican el tipo de trabajo.
 
 ### Primary
-- **Menta aurora** (aurora-mint): el acento principal. Inicio del degradado del CTA, foco (`outline` de 2 px), cursor del "prompt", enlaces de llamada a la acción en tarjetas y categoría *frontend* en los nodos del cerebro.
+- **Menta aurora** (aurora-mint): el acento principal. Relleno sólido del CTA y de la pregunta seleccionada, foco (`outline` de 2 px), cursor del "prompt", enlaces de llamada a la acción en tarjetas y categoría *frontend* en los nodos del cerebro.
 
 ### Secondary
-- **Cian aurora** (aurora-cyan): final del degradado del CTA, brillo de hover, halo interno de escenarios y tarjetas, categoría *backend/cloud*.
+- **Cian aurora** (aurora-cyan): halo interno de escenarios y tarjetas, líneas del pipeline, categoría *backend/cloud*.
 
 ### Tertiary
 - **Violeta aurora** (aurora-violet): IA. Paso activo del pipeline RAG, estado "recuperando" del corpus, blob de aurora de la derecha y halo de contacto.
@@ -155,10 +156,12 @@ Una noche azul profunda con tres luces de aurora que codifican el tipo de trabaj
 - **Luz de estrella** (starlight): texto principal y categoría *producto*.
 - **Crepúsculo** (dusk-muted): texto secundario, metadatos y pestañas no seleccionadas (contraste AA sobre la noche).
 - **Pelo de luz** (hairline): bordes y divisores de 1 px.
-- **Tinta sobre aurora** (on-aurora): texto sobre el degradado menta→cian.
+- **Tinta sobre aurora** (on-aurora): texto sobre cualquier relleno de acento (CTA menta, índice violeta del RAG).
 
 ### Named Rules
 **The Meaningful Light Rule.** Cada acento significa una categoría (frontend, backend, IA) y se reutiliza con el mismo significado en nodos, listas y escenas mediante `data-cat` / `--node`. Un acento no se usa como color decorativo arbitrario.
+
+**The Sober Light Rule.** Los acentos se usan sólidos y con halos cortos; nada de degradados de acento en botones ni en texto. La aurora del fondo se mantiene tenue (opacidad 0.26).
 
 **The Token Source Rule.** Los colores viven solo en el `@theme` de `src/app/globals.css`. Fuera de ahí se permiten valores literales únicamente en shaders y en imágenes OG.
 
@@ -214,7 +217,7 @@ Formas suaves y orgánicas, como luz difusa. Lo interactivo pequeño es píldora
 ### Buttons
 - **Carácter:** píldoras de luz.
 - **Shape:** píldora (999 px), 46 px de alto (36 px en la variante pequeña del header).
-- **Primary:** degradado horizontal menta→cian con texto *tinta sobre aurora* y halo menta debajo; en hover el halo pasa a cian y crece.
+- **Primary:** menta sólido con texto *tinta sobre aurora* y un halo menta corto debajo; en hover se aclara un poco hacia luz de estrella.
 - **Ghost:** cristal de noche elevada al 40 % con borde de luz de estrella al 28 %; en hover el borde pasa a luz de estrella pleno.
 - **Active:** baja 1 px. Transiciones de 0.25 s con `ease-out-soft`.
 
@@ -224,12 +227,12 @@ Formas suaves y orgánicas, como luz difusa. Lo interactivo pequeño es píldora
 
 ### Question pills ("Pregúntale a mi corpus")
 - **Unselected:** cristal con borde menta al 32 %; hover a menta pleno.
-- **Selected:** el mismo degradado menta→cian del CTA, texto *tinta sobre aurora* en 600.
+- **Selected:** menta sólido como el CTA, texto *tinta sobre aurora* en 600.
 
 ### Cards / Containers
 - **Project card:** radio 24 px, cristal de noche elevada al 70 % con un halo cian que sigue al puntero (`--mx`/`--my`) y una ligera inclinación 3D; en hover/foco el borde toma menta al 45 %. Arte del proyecto en 16:10 arriba, "ver proyecto" en menta al pie.
 - **Scene stage:** radio 28 px, borde *pelo de luz*, halo cian al 10 % sobre noche elevada; 360 px de alto mínimo (480 px desde 1024 px).
-- **Explorer panel:** radio 20 px, cristal al 60 %, borde *pelo de luz* y hoy un borde izquierdo de 3 px en el color de la categoría (ver Do's and Don'ts).
+- **Explorer panel:** radio 20 px, cristal al 60 %, borde *pelo de luz* con el borde superior teñido del color de la categoría.
 
 ### Navigation
 - **Header:** fijo, 64 px, cristal de noche al 62 % con `blur(14px) saturate(140%)` y borde inferior *pelo de luz*. Enlaces en crepúsculo que pasan a luz de estrella en hover.
@@ -239,17 +242,17 @@ Formas suaves y orgánicas, como luz difusa. Lo interactivo pequeño es píldora
 - Lista vertical de pestañas de 14 px de radio con índice mono de 26 px. Seleccionada: texto luz de estrella, cristal al 70 % y borde *pelo de luz*; el índice se rellena con el color de la categoría (stack) o con violeta (pasos del RAG).
 
 ### Signature: Aurora
-Capa fija detrás de todo: degradado radial de noche, cuatro blobs desenfocados (70 px, opacidad 0.42, `mix-blend-mode: screen`) que derivan entre 28 y 46 s, estrellas en canvas 2D y grano al 5 %. Con "reducir movimiento" se queda quieta.
+Capa fija detrás de todo: degradado radial de noche, cuatro blobs desenfocados (70 px, opacidad 0.26, `mix-blend-mode: screen`) que derivan entre 28 y 46 s, estrellas en canvas 2D y grano al 5 %. Con "reducir movimiento" se queda quieta.
 
-### Signature: StarCursor
-Punto de 6 px y anillo de 28 px con un rastro de estrellas de cuatro puntas en los colores de la aurora. Solo con puntero fino y sin "reducir movimiento"; nunca oculta el cursor en campos de texto.
+### Signature: Lente de observatorio (cursor)
+El cursor nativo se mantiene siempre. Detrás del contenido y encima de la aurora, un halo tenue (420 px, menta al 14 % → cian al 7 %, `mix-blend-mode: screen`) sigue al ratón sin retardo y aviva el cielo bajo el puntero; sobre enlaces y botones se recoge al 42 %, como una lente que enfoca. Solo con puntero fino y sin "reducir movimiento"; sin canvas.
 
 ## Do's and Don'ts
 
 ### Do:
 - **Do** construir cada superficie nueva como cristal: noche elevada con transparencia, borde *pelo de luz* y el radio que le toque por tamaño.
 - **Do** reutilizar los acentos con su significado (menta frontend/CTA, cian backend, violeta IA) a través de `data-cat` y `--node`.
-- **Do** reservar el degradado menta→cian para la acción principal y el estado seleccionado.
+- **Do** reservar el menta sólido para la acción principal y el estado seleccionado.
 - **Do** dar a toda escena 3D un fallback estático con el mismo layout y `aria-hidden` en el canvas.
 - **Do** respetar `prefers-reduced-motion` y el puntero táctil en cualquier movimiento nuevo.
 
@@ -260,8 +263,8 @@ Punto de 6 px y anillo de 28 px con un rastro de estrellas de cuatro puntas en l
 - **Don't** usar la mono para texto corrido ni ensanchar Archivo en el cuerpo de texto.
 - **Don't** añadir efectos que no cuenten algo del trabajo de Miguel.
 
-- **Don't** marcar paneles con un borde lateral grueso de color (side-tab); la categoría se expresa con el punto de nodo o el índice relleno. (Decidido el 2026-11-04; el panel del explorador aún lo usa y está pendiente de sustituir.)
-- **Don't** usar texto con degradado (`background-clip: text`); el degradado menta→cian es para superficies de acción, no para letras. (Decidido el 2026-11-04; el email de contacto aún lo usa y está pendiente de sustituir.)
+- **Don't** marcar paneles con un borde lateral grueso de color (side-tab); la categoría se expresa con el punto de nodo, el índice relleno o un borde superior teñido de 1 px.
+- **Don't** usar texto con degradado (`background-clip: text`) ni degradados de acento en botones; el énfasis viene del peso, el tamaño o un subrayado menta.
 
 ### Excepciones de marca en el detector
 La aurora del fondo (`radial-halo`) y el halo de color bajo el CTA principal (`dark-glow`) son la identidad del observatorio: están silenciados en `.impeccable/config.json`.

@@ -5,7 +5,7 @@ export interface RagStepNode {
   label: string;
 }
 
-const COLORS = ['#26C6FF', '#2EF5B0', '#2EF5B0', '#26C6FF', '#8B5CF6', '#8B5CF6'];
+const COLORS = ['#4FB3E8', '#3FD8A0', '#3FD8A0', '#4FB3E8', '#9A87F2', '#9A87F2'];
 
 export function ringPositions(n: number, rx: number, ry: number) {
   return Array.from({ length: n }, (_, i) => {
@@ -35,7 +35,7 @@ export function RagPipelineFallback({
       <path
         d={`${path} Z`}
         fill="none"
-        stroke="#26C6FF"
+        stroke="#4FB3E8"
         strokeOpacity={0.4}
         strokeDasharray="5 6"
       />
@@ -54,7 +54,7 @@ export function RagPipelineFallback({
               x={lx}
               y={ly}
               textAnchor="middle"
-              fill="#E8F1FF"
+              fill="#E8EEF7"
               fontSize={11}
               fontFamily="var(--font-mono)"
             >
